@@ -12,8 +12,8 @@ export default function App() {
 
   if (!permission.granted) {
     return (
-      <View className="flex-1 justify-center">
-        <Text className="text-center">
+      <View>
+        <Text>
           We need your permission to show the camera
         </Text>
         <Button onPress={requestPermission} title="grant permission" />
@@ -28,14 +28,13 @@ export default function App() {
   }
 
   return (
-    <View className="flex-1 justify-center">
-      <Camera className="flex-1" type={type}>
-        <View className="flex-1 flex-row bg-transparent m-[64]">
+    <View>
+      <Camera type={type}>
+        <View>
           <TouchableOpacity
-            className="flex-1 items-center self-end"
             onPress={toggleCameraType}
           >
-            <Text className="font-bold text-lg text-white">Flip Camera</Text>
+            <Text>Flip Camera</Text>
           </TouchableOpacity>
         </View>
       </Camera>
