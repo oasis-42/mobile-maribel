@@ -1,7 +1,7 @@
 import { Appbar, Card, PaperProvider } from "react-native-paper";
 import { Image, Pressable, ScrollView, Text, View } from "react-native";
 
-export default function App() {
+export default function OnBoardings() {
   return (
     <PaperProvider>
       <Appbar.Header
@@ -41,7 +41,7 @@ export default function App() {
           </Card.Content>
         </Card>
         <View style={{ alignItems: "center" }}>
-          <Image source={require("./assets/processImg.png")} style={{}} />
+          <Image source={require("../../assets/processImg.png")} />
         </View>
         <View
           style={{
