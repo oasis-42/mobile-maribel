@@ -1,18 +1,10 @@
 import { Appbar, Card, PaperProvider } from "react-native-paper";
 import { Image, Pressable, ScrollView, Text, View } from "react-native";
+import { Link } from "expo-router";
 
-export default function OnBoardings() {
+export default function OnBoarding1() {
   return (
     <PaperProvider>
-      <Appbar.Header
-        style={{
-          backgroundColor: "#D7D7D7",
-          gap: 24,
-        }}
-      >
-        <Appbar.Action icon="arrow-left" onPress={() => {}} />
-        <Appbar.Content title="Etapa 1 de 3" />
-      </Appbar.Header>
       <ScrollView style={{ flexDirection: "column" }}>
         <Card
           style={{
@@ -50,27 +42,28 @@ export default function OnBoardings() {
             padding: 10,
           }}
         >
-          <Pressable
-            onPress={() => alert("Hello!")}
-            style={{
-              backgroundColor: "#044884",
-              width: "auto",
-              height: 56,
-              flex: 1,
-              justifyContent: "center",
-              padding: 8,
-            }}
-          >
-            <Text
+          <Link href={"./screens/onboardings/onBoarding2"} asChild>
+            <Pressable
               style={{
-                color: "#FFFFFF",
-                fontWeight: "600",
-                textAlign: "center",
+                backgroundColor: "#044884",
+                width: "auto",
+                height: 56,
+                flex: 1,
+                justifyContent: "center",
+                padding: 8,
               }}
             >
-              Continuar
-            </Text>
-          </Pressable>
+              <Text
+                style={{
+                  color: "#FFFFFF",
+                  fontWeight: "600",
+                  textAlign: "center",
+                }}
+              >
+                Continuar
+              </Text>
+            </Pressable>
+          </Link>
           <Pressable
             onPress={() => alert("Ola!")}
             style={{
