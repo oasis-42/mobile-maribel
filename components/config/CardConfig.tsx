@@ -8,11 +8,11 @@ const CardConfig = () => {
     const onToggleSwitch = () => setIsSwitchOn(!isSwitchOn);
 
     return (
-        <Card>
+        <Card style={{padding: 10}}>
             <Card.Title
-                title="Nome usuário"
-                subtitle="Você é dedicado"
-                right={(props) => <Switch value={isSwitchOn} onValueChange={onToggleSwitch} />}
+                title="Nome config"
+                subtitle="Descrição config"
+                right={(props) => <Switch value={isSwitchOn} onValueChange={onToggleSwitch}/>}
             />
         </Card >
     )
