@@ -1,21 +1,20 @@
 import * as React from 'react';
 import { Card, Button, Switch } from 'react-native-paper';
 
+export default function CardConfig({title='', describe='', check=false}) {
+    const [isSwitchOn, setIsSwitchOn] = React.useState(check);
 
-const CardConfig = () => {
-    const [isSwitchOn, setIsSwitchOn] = React.useState(false);
-
-    const onToggleSwitch = () => setIsSwitchOn(!isSwitchOn);
+    function onToggleSwitch(check:boolean) {
+        setIsSwitchOn(!isSwitchOn);
+    }
 
     return (
-        <Card style={{padding: 10}}>
+        <Card style={{ padding: 10 }}>
             <Card.Title
-                title="Nome config"
-                subtitle="Descrição config"
-                right={(props) => <Switch value={isSwitchOn} onValueChange={onToggleSwitch}/>}
+                title={title}
+                subtitle={describe}
+                right={(props) => <Switch value={isSwitchOn} onValueChange={onToggleSwitch} />}
             />
         </Card >
     )
 };
-
-export default CardConfig;
