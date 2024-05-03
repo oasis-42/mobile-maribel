@@ -1,19 +1,42 @@
 import { Link } from "expo-router";
 import { Pressable, ScrollView, Text, View } from "react-native";
-import { PaperProvider } from "react-native-paper";
+import { Card, PaperProvider } from "react-native-paper";
 
 export default function OnBoarding2() {
   return (
     <PaperProvider>
-      <ScrollView>
-        <Text>OnBoarding2</Text>
-        <View
-          style={{
-            marginTop: 12,
-            gap: 14,
-            padding: 10,
-          }}
-        >
+      <ScrollView style={{ flexDirection: "column" }}>
+        <View style={{ marginTop: 12, gap: 14, padding: 10 }}>
+          <Text style={{ fontWeight: "700", fontSize: 25 }}>
+            Personalize sua evolução
+          </Text>
+          <Text style={{ fontWeight: "600" }}>
+            Entenda quais formas de avaliação melhor se encaixam em seus estudos
+          </Text>
+          <Card style={{ borderColor: "#D7D7D7" }}>
+            <Card.Title
+              title="Avaliação guiada"
+              titleStyle={{ fontWeight: "700", fontSize: 20 }}
+            />
+            <Card.Content>
+              <Text style={{ fontWeight: "400", fontSize: 12 }}>
+                Faça a sua avaliação com maior assertividade ao seguir nossos
+                temas e instruções predefinidos.
+              </Text>
+            </Card.Content>
+          </Card>
+          <Card style={{ borderColor: "#D7D7D7" }}>
+            <Card.Title
+              title="Avaliação adaptativa"
+              titleStyle={{ fontWeight: "700", fontSize: 20 }}
+            />
+            <Card.Content>
+              <Text style={{ fontWeight: "400", fontSize: 12 }}>
+                Faça a sua avaliação com novas percepções ao deixar a
+                inteligência artificial sem instruções.
+              </Text>
+            </Card.Content>
+          </Card>
           <Link href={"./onBoarding3"} asChild>
             <Pressable
               style={{
@@ -36,18 +59,6 @@ export default function OnBoarding2() {
               </Text>
             </Pressable>
           </Link>
-          <Pressable
-            onPress={() => alert("Ola!")}
-            style={{
-              flex: 1,
-              alignItems: "center",
-              padding: 8,
-            }}
-          >
-            <Text style={{ fontWeight: "600", textAlign: "center" }}>
-              Pular
-            </Text>
-          </Pressable>
         </View>
       </ScrollView>
     </PaperProvider>
