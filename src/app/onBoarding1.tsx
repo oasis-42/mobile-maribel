@@ -1,4 +1,4 @@
-import { Appbar, Card, PaperProvider } from "react-native-paper";
+import { Card, PaperProvider } from "react-native-paper";
 import { Image, Pressable, ScrollView, Text, View } from "react-native";
 import { Link } from "expo-router";
 
@@ -64,18 +64,6 @@ export default function OnBoarding1() {
               </Text>
             </Pressable>
           </Link>
-          <Pressable
-            onPress={() => alert("Ola!")}
-            style={{
-              flex: 1,
-              alignItems: "center",
-              padding: 8,
-            }}
-          >
-            <Text style={{ fontWeight: "600", textAlign: "center" }}>
-              Pular
-            </Text>
-          </Pressable>
         </View>
       </ScrollView>
     </PaperProvider>
