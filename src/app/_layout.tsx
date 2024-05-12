@@ -16,7 +16,7 @@ export default function RootLayout() {
         }}
       />
       <Stack.Screen
-        name="onBoarding1"
+        name="screens/onboardings/onBoarding1"
         options={{ title: "Etapa 1 de 3", headerTitleAlign: "center" }}
       />
       <Stack.Screen
@@ -26,6 +26,10 @@ export default function RootLayout() {
       <Stack.Screen
         name="screens/onboardings/onBoarding3"
         options={{ title: "Etapa 3 de 3", headerTitleAlign: "center" }}
+      />
+      <Stack.Screen
+        name="screens/onboardings/evaluatedComposition"
+        options={{ title: "Redação avaliada", headerTitleAlign: "center" }}
       />
     </Stack>
   );

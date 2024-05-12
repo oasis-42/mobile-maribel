@@ -33,7 +33,7 @@ export default function OnBoarding1() {
           </Card.Content>
         </Card>
         <View style={{ alignItems: "center" }}>
-          <Image source={require("../../assets/processImg.png")} />
+          <Image source={require("../../../../assets/processImg.png")} />
         </View>
         <View
           style={{
@@ -42,7 +42,7 @@ export default function OnBoarding1() {
             padding: 10,
           }}
         >
-          <Link href={"./screens/onboardings/onBoarding2"} asChild>
+          <Link href={"./onBoarding2"} asChild>
             <Pressable
               style={{
                 backgroundColor: "#044884",

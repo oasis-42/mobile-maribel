@@ -9,7 +9,9 @@ export default function App() {
         <View>
           <Text>Tela de Login</Text>
         </View>
-        <Link href={"./onBoarding1"}>Ir para onBoarding</Link>
+        <Link href={"/screens/onboardings/onBoarding1"}>
+          Ir para onBoarding
+        </Link>
       </ScrollView>
     </PaperProvider>
   );
