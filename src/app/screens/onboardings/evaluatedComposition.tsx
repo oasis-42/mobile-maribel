@@ -31,17 +31,17 @@ export default function EvaluatedComposition() {
         </View>
         {compositionStage === "introduction" && (
           <Introduction
-            onCompositionStage={() => setCompositionStage("development")}
+            setCompositionStage={setCompositionStage}
           />
         )}
         {compositionStage === "development" && (
           <Development
-            onCompositionStage={() => setCompositionStage("conclusion")}
+            setCompositionStage={setCompositionStage}
           />
         )}
         {compositionStage === "conclusion" && (
           <Conclusion
-            onCompositionStage={() => setCompositionStage("development")}
+            setCompositionStage={setCompositionStage}
           />
         )}
         <View style={{ flexDirection: "column", gap: 14 }}>

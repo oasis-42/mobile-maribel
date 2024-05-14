@@ -1,3 +1,3 @@
 interface CompositionStageProps {
-  onCompositionStage: () => void;
+  setCompositionStage: (stage: "introduction"|"development"|"conclusion") => void;
 }

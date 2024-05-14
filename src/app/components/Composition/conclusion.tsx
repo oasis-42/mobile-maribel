@@ -1,6 +1,6 @@
 import { Pressable, ScrollView, Text, TextInput, View } from "react-native";
 
-export function Conclusion({ onCompositionStage }: CompositionStageProps) {
+export function Conclusion({ setCompositionStage }: CompositionStageProps) {
   return (
     <>
       <ScrollView
@@ -36,7 +36,7 @@ export function Conclusion({ onCompositionStage }: CompositionStageProps) {
           paddingVertical: 14,
         }}
       >
-        <Pressable onPress={() => onCompositionStage()}>
+        <Pressable onPress={() => setCompositionStage("development")}>
           <Text style={{ fontWeight: "700", color: "#044884" }}>Voltar</Text>
         </Pressable>
         <Pressable disabled style={{ opacity: 0.5 }}>
