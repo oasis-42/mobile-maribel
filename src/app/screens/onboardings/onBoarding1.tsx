@@ -1,4 +1,4 @@
-import { Appbar, Card, PaperProvider } from "react-native-paper";
+import { Card, PaperProvider } from "react-native-paper";
 import { Image, Pressable, ScrollView, Text, View } from "react-native";
 import { Link } from "expo-router";
 
@@ -33,7 +33,7 @@ export default function OnBoarding1() {
           </Card.Content>
         </Card>
         <View style={{ alignItems: "center" }}>
-          <Image source={require("../../assets/processImg.png")} />
+          <Image source={require("../../../../assets/processImg.png")} />
         </View>
         <View
           style={{
@@ -42,7 +42,7 @@ export default function OnBoarding1() {
             padding: 10,
           }}
         >
-          <Link href={"./screens/onboardings/onBoarding2"} asChild>
+          <Link href={"./onBoarding2"} asChild>
             <Pressable
               style={{
                 backgroundColor: "#044884",
@@ -64,6 +64,7 @@ export default function OnBoarding1() {
               </Text>
             </Pressable>
           </Link>
+<<<<<<< HEAD:src/app/onBoarding1.tsx
           <Pressable
             onPress={() => alert("Ola!")}
             style={{
@@ -77,6 +78,8 @@ export default function OnBoarding1() {
               Pular
             </Text>
           </Pressable>
+=======
+>>>>>>> e6a83eb37b98e8b6f950c41f559065dd76e15963:src/app/screens/onboardings/onBoarding1.tsx
         </View>
       </ScrollView>
     </PaperProvider>
