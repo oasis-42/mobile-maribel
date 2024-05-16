@@ -71,8 +71,7 @@ export default function OnBoarding1() {
               flex: 1,
               alignItems: "center",
               padding: 8,
-            }
-          }
+            }}
           >
             <Text style={{ fontWeight: "600", textAlign: "center" }}>
               Pular

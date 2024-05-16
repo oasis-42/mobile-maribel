@@ -7,13 +7,13 @@ export default function OnBoarding2() {
     <PaperProvider>
 <<<<<<< HEAD
       <ScrollView>
+        <Text>OnBoarding2</Text>
         <View
           style={{
             marginTop: 12,
             gap: 14,
             padding: 10,
-          }
-        }
+          }}
         >
 =======
       <ScrollView style={{ flexDirection: "column" }}>
