@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Pressable, ScrollView, Text, TextInput, View } from "react-native";
 import { PaperProvider } from "react-native-paper";
-import { Introduction } from "../../components/Composition/introduction";
-import { Development } from "../../components/Composition/development";
-import { Conclusion } from "../../components/Composition/conclusion";
+import { Introduction } from "../../components/Composition/Introduction";
+import { Development } from "../../components/Composition/Development";
+import { Conclusion } from "../../components/Composition/Conclusion";
 
 export default function EvaluatedComposition() {
   const [compositionStage, setCompositionStage] = useState<

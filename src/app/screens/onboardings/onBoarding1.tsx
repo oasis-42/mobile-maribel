@@ -64,21 +64,6 @@ export default function OnBoarding1() {
               </Text>
             </Pressable>
           </Link>
-<<<<<<< HEAD:src/app/onBoarding1.tsx
-          <Pressable
-            onPress={() => alert("Ola!")}
-            style={{
-              flex: 1,
-              alignItems: "center",
-              padding: 8,
-            }}
-          >
-            <Text style={{ fontWeight: "600", textAlign: "center" }}>
-              Pular
-            </Text>
-          </Pressable>
-=======
->>>>>>> e6a83eb37b98e8b6f950c41f559065dd76e15963:src/app/screens/onboardings/onBoarding1.tsx
         </View>
       </ScrollView>
     </PaperProvider>
