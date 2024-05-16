@@ -16,15 +16,19 @@ export function Development({ setCompositionStage }: CompositionStageProps) {
         <Text style={{ fontWeight: "600", fontSize: 16, marginBottom: 12 }}>
           Desenvolvimento
         </Text>
-        <TextInput
-          editable
-          multiline
-          value="Figma ipsum component variant main layer. Strikethrough align content line figjam shadow comment create move. Thumbnail flatten polygon bullet edit outline vector object clip asset. 
-            Layout union underline pencil link flatten list. Comment selection frame italic arrange main text. Ipsum export auto flatten share. Team figma invite ipsum horizontal. 
-            Figma rectangle subtract pencil ipsum layout ipsum editor component horizontal. Align inspect edit bold ipsum draft boolean. Opacity draft team duplicate slice device. Underline image boolean ellipse library. Mask outline group stroke thumbnail community subtract strikethrough line. 
-            Frame ellipse pixel thumbnail font. Flows pencil duplicate thumbnail device text stroke."
-          style={{}}
-        />
+        <Text>
+          Figma ipsum component variant main layer. Strikethrough align content
+          line figjam shadow comment create move. Thumbnail flatten polygon
+          bullet edit outline vector object clip asset. Layout union underline
+          pencil link flatten list. Comment selection frame italic arrange main
+          text. Ipsum export auto flatten share. Team figma invite ipsum
+          horizontal. Figma rectangle subtract pencil ipsum layout ipsum editor
+          component horizontal. Align inspect edit bold ipsum draft boolean.
+          Opacity draft team duplicate slice device. Underline image boolean
+          ellipse library. Mask outline group stroke thumbnail community
+          subtract strikethrough line. Frame ellipse pixel thumbnail font. Flows
+          pencil duplicate thumbnail.
+        </Text>
       </ScrollView>
       <View
         style={{

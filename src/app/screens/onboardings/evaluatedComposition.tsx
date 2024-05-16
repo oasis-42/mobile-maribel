@@ -10,6 +10,14 @@ export default function EvaluatedComposition() {
     "introduction" | "development" | "conclusion"
   >("introduction");
 
+  const fechtData = () => {
+    fetch(
+      "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    ).then((response) => {
+      return response.json();
+    });
+  };
+
   return (
     <PaperProvider>
       <View
@@ -30,19 +38,13 @@ export default function EvaluatedComposition() {
           <Text style={{ fontWeight: "600", fontSize: 16 }}>678 pontos</Text>
         </View>
         {compositionStage === "introduction" && (
-          <Introduction
-            setCompositionStage={setCompositionStage}
-          />
+          <Introduction setCompositionStage={setCompositionStage} />
         )}
         {compositionStage === "development" && (
-          <Development
-            setCompositionStage={setCompositionStage}
-          />
+          <Development setCompositionStage={setCompositionStage} />
         )}
         {compositionStage === "conclusion" && (
-          <Conclusion
-            setCompositionStage={setCompositionStage}
-          />
+          <Conclusion setCompositionStage={setCompositionStage} />
         )}
         <View style={{ flexDirection: "column", gap: 14 }}>
           <Pressable
