@@ -27,6 +27,10 @@ export default function RootLayout() {
         name="screens/onboardings/onBoarding3"
         options={{ title: "Etapa 3 de 3", headerTitleAlign: "center" }}
       />
+      <Stack.Screen
+        name="screens/thmScreen/thmSelect"
+        options={{ title: "Oi", headerTitleAlign: "center" }}
+      />
     </Stack>
   );
 }

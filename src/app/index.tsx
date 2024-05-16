@@ -1,6 +1,8 @@
 import { Link } from "expo-router";
 import { ScrollView, View, Text } from "react-native";
 import { PaperProvider } from "react-native-paper";
+import Onboarding from 'react-native-onboarding-swiper';
+
 
 export default function App() {
   return (

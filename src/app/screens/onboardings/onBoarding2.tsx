@@ -6,13 +6,13 @@ export default function OnBoarding2() {
   return (
     <PaperProvider>
       <ScrollView>
-        <Text>OnBoarding2</Text>
         <View
           style={{
             marginTop: 12,
             gap: 14,
             padding: 10,
-          }}
+          }
+        }
         >
           <Link href={"./onBoarding3"} asChild>
             <Pressable

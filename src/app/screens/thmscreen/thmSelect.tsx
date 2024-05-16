@@ -1,20 +1,18 @@
 import { Link } from "expo-router";
-import {  View, Pressable, Text, ScrollView} from "react-native";
-import { PaperProvider }  from "react-native-paper";
+import { ScrollView, View } from "react-native";
+import { PaperProvider, Text } from "react-native-paper";
+import { Pressable } from "react-native"
 
-export default function OnBoarding3() {
-  return (
-    <PaperProvider>
-      <ScrollView>
-      <View
-      style={{
+export default function ThemeSelect() {
+    return(
+        <PaperProvider>
+            <ScrollView>
+                <View style={{
         marginTop: 12,
         gap: 14,
         padding: 10,
-      }
-    }>
-
-        <Link href={"/screens/thmscreen/thmSelect"} asChild>
+      }}>
+        <Link href={"/screens/feedbackscreen/feedBackScreen"} asChild>
             <Pressable
               style={{
                 backgroundColor: "#044884",
@@ -36,8 +34,10 @@ export default function OnBoarding3() {
               </Text>
             </Pressable>
           </Link>
-      </View>
-      </ScrollView>
-    </PaperProvider>
-  );
+        
+                    
+                </View>
+            </ScrollView>
+        </PaperProvider>
+    )
 }
