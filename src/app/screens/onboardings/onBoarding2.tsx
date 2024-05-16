@@ -5,6 +5,17 @@ import { Card, PaperProvider } from "react-native-paper";
 export default function OnBoarding2() {
   return (
     <PaperProvider>
+<<<<<<< HEAD
+      <ScrollView>
+        <View
+          style={{
+            marginTop: 12,
+            gap: 14,
+            padding: 10,
+          }
+        }
+        >
+=======
       <ScrollView style={{ flexDirection: "column" }}>
         <View style={{ marginTop: 12, gap: 14, padding: 10 }}>
           <Text style={{ fontWeight: "700", fontSize: 25 }}>
@@ -37,6 +48,7 @@ export default function OnBoarding2() {
               </Text>
             </Card.Content>
           </Card>
+>>>>>>> e6a83eb37b98e8b6f950c41f559065dd76e15963
           <Link href={"./onBoarding3"} asChild>
             <Pressable
               style={{
