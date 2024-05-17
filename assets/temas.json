@@ -1,0 +1,112 @@
+{
+    "temas": [
+        {
+            "id": 1,
+            "ano": 2014,
+            "titulo": "Publicidade infantil em questão no Brasil",
+            "textos": [
+                {"texto": "A aprovação, em abril de 2014, de uma resolução que considera abusiva a publicidade infantil, emitida pelo Conselho Nacional de Direitos da Criança e do Adolescente (Conanda), deu início a um verdadeiro cabo de guerra envolvendo ONGs de defesa dos direitos das crianças e setores interessados na continuidade das propagandas dirigidas a esse público. Elogiada por pais, ativistas e entidades, a resolução estabelece como abusiva toda propaganda dirigida à criança que tem “a intenção de persuadi-la para o consumo de qualquer produto ou serviço” e que utilize aspectos como desenhos animados, bonecos, linguagem infantil, trilhas sonoras com temas infantis, oferta de prêmios, brindes ou artigos colecionáveis que tenham apelo às crianças. Ainda há dúvidas, porém, sobre como será a aplicação prática da resolução. E associações de anunciantes, emissoras, revistas e de empresas de licenciamento e fabricantes de produtos infantis criticam a medida e dizem não reconhecer a legitimidade constitucional do Conanda para legislar sobre publicidade e para impor a resolução tanto às famílias quanto ao mercado publicitário. Além disso, defendem que a autorregulamentação pelo Conselho Nacional de Autorregulamentação Publicitária (Conar) já seria uma forma de controlar e evitar abusos."},
+                {"texto": "Precisamos preparar a criança, desde pequena, para receber as informações do mundo exterior, para compreender o que está por trás da divulgação de produtos. Só assim ela se tornará o consumidor do futuro, aquele capaz de saber o que, como e por que comprar, ciente de suas reais necessidades e consciente de suas responsabilidades consigo mesma e com o mundo."},
+                {"imagem": "2014_1.png"}
+    
+            ]
+        },
+        {
+            "id": 2,
+            "ano": 2015,
+            "titulo": "A persistência da violência contra a mulher na sociedade brasileira",
+            "textos": [
+                {"texto": "Nos 30 anos decorridos entre 1980 e 2010 foram assassinadas no país acima de 92 mil mulheres, 43,7 mil só na última década. O número de mortes nesse período passou de 1.353 para 4.465, que representa um aumento de 230%, mais que triplicando o quantitativo de mulheres vítimas de assassinato no país."},
+                {"imagem": "2015_1.png"},
+                {"imagem": "2015_2.png"}
+            ]
+        },
+        {
+            "id": 3,
+            "ano": 2016,
+            "titulo": "Caminhos para combater o racismo no Brasil",
+            "textos": [
+                {"texto": "Ascendendo à condição de trabalhador livre, antes ou depois da abolição, o negro se via jungido a novas formas de exploração que, embora melhores que a escravidão, só lhe permitiam integrar-se na sociedade e no mundo cultural, que se tornaram seus, na condição de um subproletariado compelido ao exercício de seu antigo papel, que continuava sendo principalmente o de animal de serviço. As taxas de analfabetismo, de criminalidade e de mortalidade dos negros eram muito superiores às dos brancos, refletindo a desigualdade estrutural persistente e a herança histórica do racismo institucionalizado."},
+                {"texto": "LEI Nº 7.716, DE 5 DE JANEIRO DE 1989  Define os crimes resultantes de preconceito de raça ou corSerão punidos, na forma desta Lei, os crimes resultantes de discriminação ou preconceito de raça, cor, etnia, religião ou procedência nacional."},
+                {"imagem": "2016_1.png"},
+                {"texto": "O que são ações afirmativas Ações afirmativas são políticas públicas feitas pelo governo ou pela iniciativa privada com o objetivo de corrigir desigualdades raciais presentes na sociedade, acumuladas ao longo de anos. Uma ação afirmativa busca oferecer igualdade de oportunidades a todos. As ações afirmativas podem ser de três tipos: com o objetivo de reverter a representação negativa; para promover igualdade de oportunidades; e para combater o preconceito e o racismo. Em 2012, o Supremo Tribunal Federal (STF) decidiu por unanimidade que as ações afirmativas são constitucionais e políticas essenciais para a redução de desigualdades e discriminações existentes no país. No Brasil, as ações afirmativas integram uma agenda de combate à herança histórica de escravidão, segregação racial e racismo contra a população negra."}
+            ]
+        },
+        {
+            "id": 4,
+            "ano": 2017,
+            "titulo": "Desafio para a formação educacional de surdos no Brasil",
+            "textos": [
+                {"texto": "CAPÍTULO IV DO DIREITO À EDUCAÇÃO Art. 27. A educação constitui direito da pessoa com deficiência, assegurados sistema educacional inclusivo em todos os níveis e aprendizado ao longo de toda a vida, de forma a alcançar o máximo desenvolvimento possível de seus talentos e habilidades físicas, sensoriais, intelectuais e sociais, segundo suas características, interesses e necessidades de aprendizagem. Parágrafo único. É dever do Estado, da família, da comunidade escolar e da sociedade assegurar educação de qualidade à pessoa com deficiência, colocando-a a salvo de toda forma de violência, negligência e discriminação. Art. 28. Incumbe ao poder público assegurar, criar, desenvolver, implementar, incentivar, acompanhar e avaliar: [...] IV - oferta de educação bilíngue, em Libras como primeira língua e na modalidade escrita da língua portuguesa como segunda língua, em escolas e classes bilíngues e em escolas inclusivas; [...] XII - oferta de ensino da Libras, do Sistema Braille e de uso de recursos de tecnologia assistiva, de forma a ampliar habilidades funcionais dos estudantes, promovendo sua autonomia e participação."},
+                {"imagem": "2017_1.png"},
+                {"imagem": "2017_2.png"},
+                {"texto": "No Brasil, os surdos só começaram a ter acesso à educação durante o Império, no governo de Dom Pedro II, que criou a primeira escola de educação de meninos surdos, em 26 de setembro de 1857, na antiga capital do País, o Rio de Janeiro. Hoje, no lugar da escola funciona o Instituto Nacional de Educação de Surdos (Ines). Por isso, a data foi escolhida como Dia do Surdo. Contudo, foi somente em 2002, por meio da sanção da Lei no 10.436, que a Língua Brasileira de Sinais (Libras) foi reconhecida como segunda língua oficial no País. A legislação determinou também que devem ser garantidas, por parte do poder público em geral e empresas concessionárias de serviços públicos, formas institucionalizadas de apoiar o uso e difusão da Libras como meio de comunicação objetiva."}
+            ]
+        },
+        {
+            "id": 5,
+            "ano": 2018,
+            "titulo": "Manipulação do comportamento do usuário pelo controle de dados na internet",
+            "textos": [
+                {"texto": "Às segundas-feiras pela manhã, os usuários de um serviço de música digital recebem uma lista personalizada de músicas que lhes permite descobrir novidades. Assim como os sistemas de outros aplicativos e redes sociais, este cérebro artificial consegue traçar um retrato automatizado do gosto de seus assinantes e constrói uma máquina de sugestões que não costuma falhar. O sistema se baseia em um algoritmo cuja evolução e usos aplicados ao consumo cultural são infinitos. De fato, plataformas de transmissão de vídeo on-line começam a desenhar suas séries de sucesso rastreando o banco de dados gerado por todos os movimentos dos usuários para analisar o que os satisfaz. O algoritmo constrói assim um universo cultural adequado e complacente com o gosto do consumidor, que pode avançar até chegar sempre a lugares reconhecíveis. Dessa forma, a filtragem de informação feita pelas redes sociais ou pelos sistemas de busca pode moldar nossa maneira de pensar. E esse é o problema principal: a ilusão de liberdade de escolha que muitas vezes é gerada pelos algoritmos."},
+                {"texto": "Nos sistemas dos gigantes da internet, a filtragem de dados é transferida para um exército de moderadores em empresas localizadas do Oriente Médio ao Sul da Ásia, que têm um papel importante no controle daquilo que deve ser eliminado da rede social, a partir de sinalizações dos usuários. Mas a informação é então processada por um algoritmo, que tem a decisão final. Os algoritmos são literais. Em poucas palavras, são uma opinião embrulhada em código. E estamos caminhando para um estágio em que é a máquina que decide qual notícia deve ou não ser lida."},
+                {"imagem": "2018_1.png"},
+                {"texto": " Mudanças sutis nas informações às quais somos expostos podem transformar nosso comportamento. As redes têm selecionado as notícias sob títulos chamativos como trending topics ou critérios como relevância. Mas nós praticamente não sabemos como isso tudo é filtrado. Quanto mais informações relevantes tivermos nas pontas dos dedos, melhor equipados estamos para tomar decisões. No entanto, surgem algumas tensões fundamentais: entre a conveniência e a deliberação; entre o que o usuário deseja e o que é melhor para ele; entre a transparência e o lado comercial. Quanto mais os sistemas souberem sobre você em comparação ao que você sabe sobre eles, há mais riscos de suas escolhas se tornarem apenas uma série de reações a cutucadas invisíveis. O que está em jogo não é tanto a questão “homem versus máquina”, mas sim a disputa “decisão informada versus obediência influenciada"}
+            ]
+        },
+        {
+            "id": 6,
+            "ano": 2019,
+            "titulo": "Democratização do acesso ao cinema no Brasil",
+            "textos": [
+                {"texto": "No dia da primeira exibição pública de cinema — 28 de dezembro de 1895, em Paris —, um homem de teatro que trabalhava com mágicas, Georges Mélies, foi falar com Lumière, um dos inventores do cinema; queria adquirir um aparelho, e Lumière desencorajou-o, disse-lhe que o “Cinematógrapho” não tinha o menor futuro como espetáculo, era um instrumento científico para reproduzir o movimento e só poderia servir para pesquisas. Mesmo que o público, no início, se divertisse com ele, seria uma novidade de vida breve, logo cansaria. Lumière enganou-se. Como essa estranha máquina de austeros cientistas virou uma máquina de contar estórias para enormes plateias, de geração em geração, durante já quase um século?"},
+                {"texto": "Edgar Morin define o cinema como uma máquina que registra a existência e a restitui como tal, porém levando em consideração o indivíduo, ou seja, o cinema seria um meio de transpor para a tela o universo pessoal, solicitando a participação do espectador."},
+                {"imagem": "2019_1.png"},
+                {"texto": "O Brasil já teve um parque exibidor vigoroso e descentralizado: quase 3 300 salas em 1975, uma para cada 30 000 habitantes, 80% em cidades do interior. Desde então, o país mudou. Quase 120 milhões de pessoas a mais passaram a viver nas cidades. A urbanização acelerada, a falta de investimentos em infraestrutura urbana, a baixa capitalização das empresas exibidoras, as mudanças tecnológicas, entre outros fatores, alteraram a geografia do cinema. Em 1997, chegamos a pouco mais de 1 000 salas. Com a expansão dos shopping centers, a atividade de exibição se reorganizou. O número de cinemas duplicou, até chegar às atuais 2 200 salas. Esse crescimento, porém, além de insuficiente (o Brasil é apenas o 60º país na relação habitantes por sala), ocorreu de forma concentrada. Foram privilegiadas as áreas de renda mais alta das grandes cidades. Populações inteiras foram excluídas do universo do cinema ou continuam mal atendidas: o Norte e o Nordeste, as periferias urbanas, as cidades pequenas e médias do interior."}
+            ]
+        },
+        {
+            "id": 7,
+            "ano": 2020,
+            "titulo": "O estigma associado às doenças mentais na sociedade brasileira",
+            "textos": [
+                {"texto": "A maior parte das pessoas, quando ouve falar em “saúde mental”, pensa em “doença mental”. Mas a saúde mental implica muito mais que a ausência de doenças mentais. Pessoas mentalmente saudáveis compreendem que ninguém é perfeito, que todos possuem limites e que não se pode ser tudo para todos. Elas vivenciam diariamente uma série de emoções como alegria, amor, satisfação, tristeza, raiva e frustração. São capazes de enfrentar os desafios e as mudanças da vida cotidiana com equilíbrio e sabem procurar ajuda quando têm dificuldade em lidar com conflitos, perturbações, traumas ou transições importantes nos diferentes ciclos da vida. A saúde mental de uma pessoa está relacionada à forma como ela reage às exigências da vida e ao modo como harmoniza seus desejos, capacidades, ambições, ideias e emoções. Todas as pessoas podem apresentar sinais de sofrimento psíquico em alguma fase da vida."},
+                {"texto": "A origem da palavra “estigma” aponta para marcas ou cicatrizes deixadas por feridas. Por extensão, em um período que remonta à Grécia Antiga, passou a designar também as marcas feitas com ferro em brasa em criminosos, escravos e outras pessoas que se desejava separar da sociedade “correta” e “honrada”. Essa mesma palavra muitas vezes está presente no universo das doenças psiquiátricas. No lugar da marca de ferro, relegamos preconceito, falta de informação e tratamentos precários a pessoas que sofrem de depressão, ansiedade, transtorno bipolar e outros transtornos mentais graves. Achar que a manifestação de um transtorno mental é “frescura” está relacionado a um ideal de felicidade que não é igual para todo mundo. A tentativa de se encaixar nesse modelo cria distância dos sentimentos reais, e quem os demonstra é rotulado, o que progressivamente dificulta a interação social. É aqui que redes sociais de enorme popularidade mostram uma face cruel, desempenhando um papel de validação da vida perfeita e criando um ambiente em que tudo deve ser mostrado em seu melhor ângulo. Fora dos holofotes da internet, porém, transtornos mentais mostram-se mais presentes do que se imagina."},
+                {"imagem": "2020_1.png"}
+            ]
+        },
+        {
+            "id": 8,
+            "ano": 2021,
+            "titulo": "Invisibilidade e registro civil: garantia de acesso à cidadania no Brasil",
+            "textos": [
+                {"texto": "Toda sexta-feira, o ônibus azul e branco estacionado no pátio da Vara da Infância e da Juventude, na Praça Onze, Centro do Rio, sacoleja com o entra e sai de gente a partir das 9h. Do lado de fora, nunca menos de 50 pessoas, todas pobres ou muito pobres, quase todas negras, cercam o veículo, perguntam, sentam e levantam, perguntam de novo e esperam sem reclamar o tempo que for preciso. Adultos, velhos e crianças estão ali para conseguir o que, no Brasil, é oficialmente reconhecido como o primeiro documento da vida - a certidão de nascimento. [...] Ao longo do discurso desses entrevistados, fica clara a forma como os usuários se definem: zero à esquerda, cachorro, um nada, pessoa que não existe, entre outras, todas são expressões que conformam claramente a ideia da pessoa sem registro de nascimento sobre si mesma como uma pessoa sem valor, cuja existência nunca foi oficialmente reconhecida pelo Estado."},
+                {"imagem": "2021_1.png"},
+                {"texto": "A certidão de nascimento é o primeiro e o mais importante documento do cidadão. Com ele, a pessoa existe oficialmente para o Estado e a sociedade. Só de posse da certidão é possível retirar outros documentos civis, como a carteira de trabalho, a carteira de identidade, o título de eleitor e o Cadastro de Pessoa Física (CPF). Além disso, para matricular uma criança na escola e ter acesso a benefícios sociais, a apresentação do documento é obrigatória."},
+                {"imagem": "2021_2.png"}
+            ]
+        },
+        {
+            "id": 9,
+            "ano": 2022,
+            "titulo": "Desafios para a valorização de comunidades e povos tradicionais no Brasil",
+            "textos": [
+                {"texto": "Comunidades e povos tradicionais brasileiros vão além de indígenas e quilombolas, abrangendo oficialmente 26 grupos e muitos outros ainda não reconhecidos pela legislação. Entre eles estão pescadores artesanais, quebradeiras de coco babaçu, apanhadores de flores sempre-vivas, caatingueiros, extrativistas, entre outros, todos culturalmente distintos e capazes de se identificarem mutuamente. Para essas populações, a terra é vista como uma mãe, estabelecendo uma relação de reciprocidade com a natureza: enquanto esta fornece alimento e um ambiente saudável para habitar e ter água, elas se responsabilizam por cuidar dela, retirando dela apenas o necessário para viver bem e respeitando seu tempo de regeneração."},
+                {"imagem": "2022_1.png"},
+                {"texto": "Povos e comunidades tradicionais. O Ministério do Desenvolvimento Social (MDS) preside, desde 2007, a Comissão Nacional de Desenvolvimento Sustentável dos Povos e Comunidades Tradicionais (CNPCT), criada em 2006. Fruto dos trabalhos da CNPCT, foi instituída, por meio do Decreto nº 6.040, de 7 de fevereiro de 2017, a Política Nacional de Desenvolvimento Sustentável dos Povos e Comunidades Tradicionais (PNPCT). A PNPCT foi criada em um contexto de busca de reconhecimento e preservação de outras formas de organização social por parte do Estado."},
+                {"texto": "Carta da Amazônia 2021 Aos participantes da 26ª Conferência das Nações Unidas sobre Mudanças Climáticas (COP26) Não podia ser mais estratégico para nós, Povos Indígenas, Populações e Comunidades Tradicionais brasileiras, reafirmarmos a defesa da sociobiodiversidade amazônica neste momento em que o mundo volta a debater a crise climática na COP26. Uma crise que atinge, em todos os contextos, os viventes da Terra! Nossos territórios protegidos e direitos respeitados são as reivindicações dos movimentos sociais e ambientais brasileiros. Não compactuamos com qualquer tentativa e estratégia baseada somente na lógica do mercado, com empresas que apoiam legislações ambientais que ameaçam nossos direitos e com mecanismos de financiamento que não condizem com a realidade dos nossos territórios. Propomos o que temos de melhor: a experiência das nossas sociedades e culturas históricas, construídas com base em nossos saberes tradicionais e ancestrais, além de nosso profundo conhecimento da natureza. Inovação, para nós, não pode resultar em processos que venham a ameaçar nossos territórios, nossas formas tradicionais e harmônicas de viver e produzir. Amazônia, Brasil, 20 de outubro de 2021. Entidades signatárias: CNS; Coiab; Conaq; MIQCB; Coica; ANA Amazônia e Confrem"}
+            ]
+        },
+        {
+            "id": 10,
+            "ano": 2023,
+            "titulo": "Desafios para o enfrentamento da invisibilidade do trabalho de cuidado realizado pela mulher no Brasil",
+            "textos": [
+                {"texto": "O trabalho de cuidado é essencial para nossas sociedades e para a economia, abrangendo cuidados com crianças, idosos, pessoas com doenças e deficiências físicas e mentais, além de tarefas domésticas diárias. Se essas atividades essenciais não fossem realizadas, comunidades, locais de trabalho e economias inteiras ficariam estagnados. Contudo, globalmente, o trabalho de cuidado não remunerado e mal remunerado é predominantemente assumido por mulheres e meninas em situação de pobreza, especialmente aquelas pertencentes a grupos que sofrem discriminação de gênero, raça, etnia, nacionalidade e sexualidade. As mulheres representam mais de três quartos do cuidado não remunerado e dois terços da força de trabalho envolvida em atividades de cuidado remuneradas."},
+                {"imagem": "2023_1.png"},
+                {"texto": "A sociedade brasileira tem passado por inúmeras transformações sociais ao longo das últimas décadas, incluindo mudanças nas percepções sociais sobre os valores e convenções de gênero, e na forma como as mulheres têm se inserido na sociedade. No entanto, permanece o padrão de delegação quase exclusiva às famílias, especialmente às mulheres, das atividades relacionadas à reprodução da vida e da sociedade, comumente denominadas trabalho de cuidado."},
+                {"imagem": "2023_2.png"}  
+            ]
+        }
+    ]
+  }
