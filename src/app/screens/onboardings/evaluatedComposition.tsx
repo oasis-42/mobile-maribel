@@ -4,6 +4,7 @@ import { PaperProvider } from "react-native-paper";
 import { Introduction } from "../../components/Composition/Introduction";
 import { Development } from "../../components/Composition/Development";
 import { Conclusion } from "../../components/Composition/Conclusion";
+import { Link } from "expo-router";
 
 export default function EvaluatedComposition() {
   const [compositionStage, setCompositionStage] = useState<
@@ -59,25 +60,26 @@ export default function EvaluatedComposition() {
           />
         )}
         <View style={{ flexDirection: "column", gap: 14 }}>
-          <Pressable
-            style={{
-              backgroundColor: "#044884",
-              justifyContent: "center",
-              borderRadius: 8,
-              padding: 8,
-              height: 56,
-            }}
-          >
-            <Text
+          <Link href={"../feedbackscreen/feedBackScreen"} asChild>
+            <Pressable
               style={{
-                color: "#FFFFFF",
-                fontWeight: "600",
-                textAlign: "center",
+                backgroundColor: "#044884",
+                justifyContent: "center",
+                padding: 12,
+                borderRadius: 8,
               }}
             >
-              Competências avaliadas
-            </Text>
-          </Pressable>
+              <Text
+                style={{
+                  color: "#FFFFFF",
+                  fontWeight: "600",
+                  textAlign: "center",
+                }}
+              >
+                Competências avaliadas
+              </Text>
+            </Pressable>
+          </Link>
           <Pressable
             style={{
               backgroundColor: "#044884",

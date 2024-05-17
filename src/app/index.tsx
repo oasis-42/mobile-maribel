@@ -2,6 +2,7 @@ import { Link } from "expo-router";
 import { ScrollView, View, Text } from "react-native";
 import { PaperProvider } from "react-native-paper";
 
+
 export default function App() {
   return (
     <PaperProvider>

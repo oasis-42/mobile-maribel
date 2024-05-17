@@ -64,6 +64,19 @@ export default function OnBoarding1() {
               </Text>
             </Pressable>
           </Link>
+          <Pressable
+            onPress={() => alert("Ola!")}
+            style={{
+              flex: 1,
+              alignItems: "center",
+              padding: 8,
+            }
+          }
+          >
+            <Text style={{ fontWeight: "600", textAlign: "center" }}>
+              Pular
+            </Text>
+          </Pressable>
         </View>
       </ScrollView>
     </PaperProvider>
