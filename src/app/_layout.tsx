@@ -28,7 +28,15 @@ export default function RootLayout() {
         options={{ title: "Etapa 3 de 3", headerTitleAlign: "center" }}
       />
       <Stack.Screen
+        name="screens/thmscreen/thmSelect"
+        options={{ title: "Oi", headerTitleAlign: "center" }}
+      />
+      <Stack.Screen
         name="screens/onboardings/evaluatedComposition"
+        options={{ title: "Redação avaliada", headerTitleAlign: "center" }}
+      />
+      <Stack.Screen
+        name="screens/feedbackscreen/feedBackScreen"
         options={{ title: "Redação avaliada", headerTitleAlign: "center" }}
       />
     </Stack>
