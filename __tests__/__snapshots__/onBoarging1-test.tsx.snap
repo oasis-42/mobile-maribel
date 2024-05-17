@@ -1,0 +1,203 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render correctly 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    [
+      {
+        "flex": 1,
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    collapsable={false}
+    pointerEvents="box-none"
+    style={
+      {
+        "flex": 1,
+      }
+    }
+  >
+    <RCTScrollView
+      style={
+        {
+          "flexDirection": "column",
+        }
+      }
+    >
+      <View>
+        <View
+          collapsable={false}
+          style={
+            {
+              "backgroundColor": "transparent",
+              "borderRadius": 12,
+              "margin": 12,
+              "shadowColor": "#000",
+              "shadowOffset": {
+                "height": 1,
+                "width": 0,
+              },
+              "shadowOpacity": 0.15,
+              "shadowRadius": 3,
+            }
+          }
+          testID="card-container-outer-layer"
+        >
+          <View
+            collapsable={false}
+            style={
+              {
+                "backgroundColor": "transparent",
+                "borderRadius": 12,
+                "elevation": 1,
+                "flex": undefined,
+                "padding": 4,
+                "shadowColor": "transparent",
+                "shadowOffset": {
+                  "height": 1,
+                  "width": 0,
+                },
+                "shadowOpacity": 0.3,
+                "shadowRadius": 1,
+              }
+            }
+            testID="card-container"
+          >
+            <View
+              style={
+                [
+                  {
+                    "flexShrink": 1,
+                  },
+                  undefined,
+                ]
+              }
+              testID="card"
+            >
+              <View
+                borderRadiusStyles={{}}
+                style={
+                  [
+                    {
+                      "paddingHorizontal": 16,
+                    },
+                    {
+                      "paddingVertical": 16,
+                    },
+                    undefined,
+                  ]
+                }
+              >
+                <Text
+                  style={
+                    {
+                      "color": "#2E3E4B",
+                      "fontSize": 25,
+                      "fontWeight": "700",
+                    }
+                  }
+                >
+                  Avalie suas redações
+                </Text>
+                <Text
+                  style={
+                    {
+                      "color": "#2E3E4B",
+                      "fontSize": 16,
+                      "fontWeight": "600",
+                      "lineHeight": 24,
+                      "textAlign": "justify",
+                    }
+                  }
+                >
+                  Faça as correções de suas redações do ENEM através da Maribel e tenha orientações imediatas.
+                </Text>
+              </View>
+            </View>
+          </View>
+        </View>
+        <View
+          style={
+            {
+              "alignItems": "center",
+            }
+          }
+        >
+          <Image
+            source={1}
+          />
+        </View>
+        <View
+          style={
+            {
+              "gap": 14,
+              "marginTop": 12,
+              "padding": 10,
+            }
+          }
+        >
+          <View
+            accessibilityState={
+              {
+                "busy": undefined,
+                "checked": undefined,
+                "disabled": undefined,
+                "expanded": undefined,
+                "selected": undefined,
+              }
+            }
+            accessibilityValue={
+              {
+                "max": undefined,
+                "min": undefined,
+                "now": undefined,
+                "text": undefined,
+              }
+            }
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            href="./screens/onboardings/onBoarding2"
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            role="link"
+            style={
+              {
+                "backgroundColor": "#044884",
+                "flex": 1,
+                "height": 56,
+                "justifyContent": "center",
+                "padding": 8,
+                "width": "auto",
+              }
+            }
+          >
+            <Text
+              style={
+                {
+                  "color": "#FFFFFF",
+                  "fontWeight": "600",
+                  "textAlign": "center",
+                }
+              }
+            >
+              Continuar
+            </Text>
+          </View>
+        </View>
+      </View>
+    </RCTScrollView>
+  </View>
+</RNCSafeAreaProvider>
+`;
