@@ -4,15 +4,15 @@ import { PaperProvider, Text } from "react-native-paper";
 import { Pressable } from "react-native"
 
 export default function ThemeSelect() {
-    return(
-        <PaperProvider>
-            <ScrollView>
-                <View style={{
-        marginTop: 12,
-        gap: 14,
-        padding: 10,
-      }}>
-        <Link href={"/screens/feedbackscreen/feedBackScreen"} asChild>
+  return (
+    <PaperProvider>
+      <ScrollView>
+        <View style={{
+          marginTop: 12,
+          gap: 14,
+          padding: 10,
+        }}>
+          <Link href={"/screens/feedbackscreen/feedBackScreen"} asChild>
             <Pressable
               style={{
                 backgroundColor: "#044884",
@@ -30,14 +30,14 @@ export default function ThemeSelect() {
                   textAlign: "center",
                 }}
               >
-               Continuar 
+                Continuar
               </Text>
             </Pressable>
           </Link>
-        
-                    
-                </View>
-            </ScrollView>
-        </PaperProvider>
-    )
+
+
+        </View>
+      </ScrollView>
+    </PaperProvider>
+  )
 }

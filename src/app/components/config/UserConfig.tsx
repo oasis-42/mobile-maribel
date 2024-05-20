@@ -1,7 +1,5 @@
 import CardConfig from "./CardConfig"
 
-
-
 const dataConfig = [{
     id_config: 1,
     title_config: 'Gerar pontuação',

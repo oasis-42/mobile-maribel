@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Pressable, ScrollView, Text, TextInput, View } from "react-native";
 import { PaperProvider } from "react-native-paper";
-import { Introduction } from "../../components/Composition/Introduction";
-import { Development } from "../../components/Composition/Development";
-import { Conclusion } from "../../components/Composition/Conclusion";
+import { Introduction } from "../../components/composition/Introduction";
+import { Development } from "../../components/composition/Development";
+import { Conclusion } from "../../components/composition/Conclusion";
 import { Link } from "expo-router";
 
 export default function EvaluatedComposition() {
