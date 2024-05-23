@@ -39,6 +39,10 @@ export default function RootLayout() {
         name="screens/feedbackscreen/feedBackScreen"
         options={{ title: "Redação avaliada", headerTitleAlign: "center" }}
       />
+      <Stack.Screen
+        name="screens/textaccuracy/textAccuravy"
+        options={{ title: "Análise", headerTitleAlign: "center" }}
+      />
     </Stack>
   );
 }
