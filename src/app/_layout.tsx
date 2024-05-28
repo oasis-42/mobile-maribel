@@ -40,7 +40,7 @@ export default function RootLayout() {
         options={{ title: "Redação avaliada", headerTitleAlign: "center" }}
       />
       <Stack.Screen
-        name="screens/textaccuracy/textAccuravy"
+        name="screens/textanalyzer/textAnalyzer"
         options={{ title: "Análise", headerTitleAlign: "center" }}
       />
     </Stack>

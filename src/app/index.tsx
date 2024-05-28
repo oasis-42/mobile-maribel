@@ -13,6 +13,9 @@ export default function App() {
         <Link href={"/screens/onboardings/onBoarding1"}>
           Ir para onBoarding
         </Link>
+        <Link href={"/screens/textanalyzer/textAnalyzer"}>
+          Ir para analise
+        </Link>
       </ScrollView>
     </PaperProvider>
   );
