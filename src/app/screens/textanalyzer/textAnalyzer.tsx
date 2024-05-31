@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { PaperProvider, Card, Text } from "react-native-paper";
+import { PaperProvider, Card, Text, IconButton, Button, MD3Colors } from "react-native-paper";
 import { View, Pressable, ScrollView } from "react-native";
 import { Link } from "expo-router";
 import {
@@ -26,9 +26,26 @@ export default function textAnalyzer() {
       });
   }, []);
 
+  function onMoreInformation() {
+    return ''
+  }
+
 
   return (
     <PaperProvider>
+      <View>
+        <Card style={{ display: "flex", alignContent: 'center', width: 200, height: 37, borderRadius: 5, }}>
+          <View  style={{ display: "flex", flexDirection:'row',justifyContent: 'space-between', alignItems: 'center'}}>
+            <Text variant="titleSmall">Nível de precisão</Text>
+            <IconButton
+              icon="information-outline"
+              iconColor={MD3Colors.primary0}
+              size={20}
+              onPress={() => onMoreInformation()}
+            />
+          </View>
+        </Card >
+      </View>
       <View
         style={{
           gap: 8,
@@ -38,6 +55,7 @@ export default function textAnalyzer() {
           alignItems: "center",
         }}
       >
+
         <View
           style={{
             borderColor: "black",
@@ -53,31 +71,32 @@ export default function textAnalyzer() {
         </View>
 
         <View style={{
-            display: "flex",
-            flexDirection: "row",
-            padding: 10,
-            gap: 8
-          }}>
-        <Link href={"/screens/feedbackscreen/feedBackScreen"} asChild>
+          display: "flex",
+          flexDirection: "row",
+          padding: 10,
+          gap: 8
+        }}>
+          <Link href={"/screens/feedbackscreen/feedBackScreen"} asChild>
             <Pressable
               style={{
-                backgroundColor: "#044884",
+                backgroundColor: "#FFFFFF",
                 width: "auto",
                 height: 56,
                 flex: 1,
                 justifyContent: "center",
                 padding: 8,
-                borderRadius: 7
+                borderRadius: 7,
+                borderColor: "#044884"
               }}
             >
               <Text
                 style={{
-                  color: "#FFFFFF",
+                  color: "#044884",
                   fontWeight: "600",
                   textAlign: "center",
                 }}
               >
-                Continuar
+                Tentar novamente
               </Text>
             </Pressable>
           </Link>
@@ -100,7 +119,7 @@ export default function textAnalyzer() {
                   textAlign: "center",
                 }}
               >
-                Continuar
+                Usar texto
               </Text>
             </Pressable>
           </Link>
@@ -108,7 +127,7 @@ export default function textAnalyzer() {
 
 
       </View>
-      
+
 
 
 
