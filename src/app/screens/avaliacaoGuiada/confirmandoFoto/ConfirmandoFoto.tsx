@@ -2,21 +2,39 @@ import { router } from "expo-router";
 import { View, Image } from "react-native";
 import { Button } from "react-native-paper";
 import api from "../../../../sdk/api";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import AppContext from "../../../contexts/AppContext";
 
 export default function ConfirmandoFoto() {
-    const base64Image = "";
+    const BASE_URL = "https://api-maribel-production.up.railway.app";
 
-    // const [data, setData] = useState<any>();
-    // const [error, setError] = useState<any>();
-    // const [isLoading, setIsLoading] = useState<any>();
+    const { base64Image, setText } = useContext<any>(AppContext);
 
-    async function consegueTextoProcessadoPeloOcr() {
-        const { data, error, isLoading } = api.processOcr(base64Image); 
+    function getBaseHeaders() {
+        const headers = new Headers();
+        headers.append("Content-Type", "application/json");
+        return headers;
     }
 
-    function vaiParaTelaDeConfirmandoTexto() {
-        
+    async function processOcr() {
+        const jsonBody = JSON.stringify({
+            "base64": base64Image
+        })
+
+        const response = await fetch(`${BASE_URL}/api/v1/ocr/base64`, {
+            method: "POST",
+            headers: getBaseHeaders(),
+            body: jsonBody,
+            redirect: "follow"
+        });
+
+        const jsonResponse = await response.json();
+        setText(jsonResponse.text);
+    }
+
+    async function handleOnPressContinuar() {
+        await processOcr();
+        router.push({ pathname: "screens/avaliacaoGuiada/confirmandoTexto/ConfirmandoTexto" });
     }
 
     return (
@@ -30,9 +48,7 @@ export default function ConfirmandoFoto() {
                 Tirar outra foto
             </Button>
 
-            <Button onPress={() => {
-                router.push({ pathname: "screens/avaliacaoGuiada/confirmandoTexto/ConfirmandoTexto" });
-            }}>
+            <Button onPress={handleOnPressContinuar}>
                 Continuar
             </Button>
         </View>

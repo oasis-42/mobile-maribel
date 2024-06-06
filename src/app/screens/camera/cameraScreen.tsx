@@ -1,7 +1,8 @@
 import { CameraView, useCameraPermissions } from 'expo-camera';
-import { useRef } from 'react';
+import { useContext, useRef } from 'react';
 import { Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import api from '../../../sdk/api';
+import AppContext from '../../contexts/AppContext';
 import { router } from 'expo-router';
 
 export default function Camera() {
@@ -9,6 +10,8 @@ export default function Camera() {
     const [permission, requestPermission] = useCameraPermissions();
 
     const cameraRef = useRef<CameraView>();
+
+    const { setBase64Image } = useContext<any>(AppContext);
 
     if (!permission) {
         return <View />;
@@ -29,15 +32,9 @@ export default function Camera() {
 
         if (!base64Image) return;
 
-        router.push({ pathname: "screens/avaliacaoGuiada/confirmandoFoto/ConfirmandoFoto", params: { base64Image }});
+        setBase64Image(base64Image);
 
-        // const { data, error, isLoading } = api.processOcr(imageBase64);
-
-        // while (isLoading) {
-
-        // }
-
-        // router.push()
+        router.push({ pathname: "screens/avaliacaoGuiada/confirmandoFoto/ConfirmandoFoto" });
     }
 
     return (
