@@ -6,9 +6,17 @@ import { useState } from "react";
 export default function RootLayout() {
   const [base64Image, setBase64Image] = useState();
   const [text, setText] = useState();
+  const [feedback, setFeedback] = useState();
 
   return (
-    <AppContext.Provider value={{ base64Image, setBase64Image, text, setText }}>
+    <AppContext.Provider value={{ 
+      base64Image, 
+      setBase64Image, 
+      text, 
+      setText,
+      feedback, 
+      setFeedback
+    }}>
       <PaperProvider>
         <Stack>
           <Stack.Screen
