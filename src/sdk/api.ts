@@ -30,9 +30,7 @@ function processOcr(imageBase64: string) {
 
             const jsonResponse = await response.json();
 
-            processOcrSchema.parse(jsonResponse);
-
-            return jsonResponse;
+            return processOcrSchema.parse(jsonResponse);
         } catch(err: any) {
             throw new Error();
         }
