@@ -1,6 +1,7 @@
 import { CameraView, useCameraPermissions } from 'expo-camera';
 import { useContext, useRef } from 'react';
 import { Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { IconButton } from "react-native-paper";
 import api from '../../../sdk/api';
 import AppContext from '../../contexts/AppContext';
 import { router } from 'expo-router';
@@ -42,7 +43,13 @@ export default function Camera() {
             <CameraView style={styles.camera} facing={orientacaoDaCamera} ref={(ref) => ref ? cameraRef.current = ref : null}>
                 <View style={styles.buttonContainer}>
                     <TouchableOpacity style={styles.button} onPress={takePicture}>
-                        <Text style={styles.text}>Take Picture</Text>
+                        <IconButton
+                            icon="camera"
+                            iconColor='#fff'
+                            size={38}
+                            containerColor='#044884'
+                        />
+                        {/* <Text style={styles.text}>Take Picture</Text> */}
                     </TouchableOpacity>
                 </View>
             </CameraView>
