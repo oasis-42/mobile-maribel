@@ -1,12 +1,13 @@
 import { CameraView, useCameraPermissions } from 'expo-camera';
-import { useContext, useRef } from 'react';
+import { useContext, useRef, useState } from 'react';
 import { Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { IconButton } from "react-native-paper";
+import { IconButton, ActivityIndicator } from "react-native-paper";
 import api from '../../../sdk/api';
 import AppContext from '../../contexts/AppContext';
 import { router } from 'expo-router';
 
 export default function Camera() {
+    const [loading, setLoading] = useState(false);
     const orientacaoDaCamera = "back";
     const [permission, requestPermission] = useCameraPermissions();
 
@@ -28,6 +29,7 @@ export default function Camera() {
     }
 
     async function takePicture() {
+        setLoading(true)
         const capturedPicture = await cameraRef.current?.takePictureAsync({ base64: true, imageType: 'png' });
         const base64Image = capturedPicture?.base64;
 
@@ -35,6 +37,7 @@ export default function Camera() {
 
         setBase64Image(base64Image);
 
+        setLoading(false)
         router.push({ pathname: "screens/avaliacaoGuiada/confirmandoFoto/ConfirmandoFoto" });
     }
 
@@ -42,15 +45,18 @@ export default function Camera() {
         <View style={styles.container}>
             <CameraView style={styles.camera} facing={orientacaoDaCamera} ref={(ref) => ref ? cameraRef.current = ref : null}>
                 <View style={styles.buttonContainer}>
-                    <TouchableOpacity style={styles.button} onPress={takePicture}>
-                        <IconButton
-                            icon="camera"
-                            iconColor='#fff'
-                            size={38}
-                            containerColor='#044884'
-                        />
-                        {/* <Text style={styles.text}>Take Picture</Text> */}
-                    </TouchableOpacity>
+                    {loading ? (
+                        <ActivityIndicator style={styles.buttonContainer} animating={true} />
+                    ) : (
+                        <TouchableOpacity style={styles.button} onPress={takePicture}>
+                            <IconButton
+                                icon="camera"
+                                iconColor='#fff'
+                                size={38}
+                                containerColor='#044884'
+                            />
+                        </TouchableOpacity>
+                    )}
                 </View>
             </CameraView>
         </View>

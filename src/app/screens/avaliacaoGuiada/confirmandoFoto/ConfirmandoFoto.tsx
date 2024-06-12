@@ -1,11 +1,13 @@
+import * as React from 'react';
 import { router } from "expo-router";
-import { View, Image } from "react-native";
-import { Button } from "react-native-paper";
+import { View, Image, StyleSheet } from "react-native";
+import { Button, ActivityIndicator } from "react-native-paper";
 import api from "../../../../sdk/api";
 import { useContext, useState } from "react";
 import AppContext from "../../../contexts/AppContext";
 
 export default function ConfirmandoFoto() {
+    const [loading, setLoading] = React.useState(false);
     const BASE_URL = "https://api-maribel-production.up.railway.app";
 
     const { base64Image, setText } = useContext<any>(AppContext);
@@ -17,6 +19,7 @@ export default function ConfirmandoFoto() {
     }
 
     async function processOcr() {
+        setLoading(true)
         const jsonBody = JSON.stringify({
             "base64": base64Image
         })
@@ -30,6 +33,7 @@ export default function ConfirmandoFoto() {
 
         const jsonResponse = await response.json();
         setText(jsonResponse.text);
+        setLoading(false)
     }
 
     async function handleOnPressContinuar() {
@@ -37,20 +41,64 @@ export default function ConfirmandoFoto() {
         router.push({ pathname: "screens/avaliacaoGuiada/confirmandoTexto/ConfirmandoTexto" });
     }
 
+    function handleOnPressTakeAgain() {
+        router.push({ pathname: "screens/camera/cameraScreen" });
+    }
+
     return (
         <View>
-            <Image 
-                source={{ uri: `data:image/png;base64,${base64Image}` }} 
-                style={{ width: 200, height: 200 }}
-            />
+            {loading ? (
+                <ActivityIndicator animating={true} />
+            ) : (
+                <View style={styles.container}>
+                    <Image
+                        source={{ uri: `data:image/png;base64,${base64Image}` }}
+                        style={{ width: 400, height: 600 }}
+                        resizeMode="stretch"
+                    />
+                </View>
+            )}
 
-            <Button>
-                Tirar outra foto
-            </Button>
+            <View style={{
+                display: "flex",
+                flexDirection: "row",
+                padding: 10,
+                gap: 8
+            }}>
 
-            <Button onPress={handleOnPressContinuar}>
-                Continuar
-            </Button>
+                <Button style={styles.btn_again} onPress={handleOnPressTakeAgain}>
+                    Tirar outra foto
+                </Button>
+
+                <Button style={styles.btn_next} onPress={handleOnPressContinuar} >
+                    Continuar
+                </Button>
+
+            </View>
         </View>
     );
 }
+
+const styles = StyleSheet.create({
+    container: {
+        justifyContent: 'center',
+        flexDirection: 'row'
+    }, btn_again: {
+        backgroundColor: "#FFFFFF",
+        width: "auto",
+        height: 56,
+        flex: 1,
+        justifyContent: "center",
+        padding: 8,
+        borderRadius: 7,
+        borderColor: "#044884"
+    }, btn_next: {
+        backgroundColor: "#044884",
+        width: "auto",
+        height: 56,
+        flex: 1,
+        justifyContent: "center",
+        padding: 8,
+        borderRadius: 7
+    }
+});
