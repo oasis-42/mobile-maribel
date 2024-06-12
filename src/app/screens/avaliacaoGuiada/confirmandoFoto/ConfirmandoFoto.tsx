@@ -46,44 +46,55 @@ export default function ConfirmandoFoto() {
     }
 
     return (
-        <View>
+        <View style={styles.mainContainer}>
             {loading ? (
                 <ActivityIndicator animating={true} />
             ) : (
-                <View style={styles.container}>
+                <View style={styles.imageContainer}>
                     <Image
                         source={{ uri: `data:image/png;base64,${base64Image}` }}
-                        style={{ width: 400, height: 600 }}
-                        resizeMode="stretch"
+                        style={styles.image}
+                        resizeMode="contain"
                     />
                 </View>
             )}
 
-            <View style={{
-                display: "flex",
-                flexDirection: "row",
-                padding: 10,
-                gap: 8
-            }}>
-
+            <View style={styles.buttonContainer}>
                 <Button style={styles.btn_again} onPress={handleOnPressTakeAgain}>
                     Tirar outra foto
                 </Button>
 
-                <Button style={styles.btn_next} onPress={handleOnPressContinuar} >
+                <Button style={styles.btn_next} onPress={handleOnPressContinuar}>
                     Continuar
                 </Button>
-
             </View>
         </View>
     );
 }
 
 const styles = StyleSheet.create({
-    container: {
+    mainContainer: {
+        flex: 1,
         justifyContent: 'center',
-        flexDirection: 'row'
-    }, btn_again: {
+        backgroundColor: '#000', // optional
+    },
+    imageContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    image: {
+        width: '100%',
+        height: '100%',
+    },
+    buttonContainer: {
+        flexDirection: 'row',
+        padding: 10,
+        gap: 8,
+        justifyContent: 'space-around',
+        backgroundColor: '#fff', // optional, makes background white
+    },
+    btn_again: {
         backgroundColor: "#FFFFFF",
         width: "auto",
         height: 56,
@@ -91,8 +102,10 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         padding: 8,
         borderRadius: 7,
-        borderColor: "#044884"
-    }, btn_next: {
+        borderColor: "#044884",
+        borderWidth: 1, // Added to make border visible
+    },
+    btn_next: {
         backgroundColor: "#044884",
         width: "auto",
         height: 56,
@@ -100,5 +113,5 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         padding: 8,
         borderRadius: 7
-    }
+    },
 });
