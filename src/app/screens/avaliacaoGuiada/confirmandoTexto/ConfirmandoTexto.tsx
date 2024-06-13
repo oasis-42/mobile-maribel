@@ -45,13 +45,19 @@ export default function ConfirmandoTexto() {
         router.push({ pathname: "screens/camera/cameraScreen" });
     }
 
-    const getColor = (accuracy: number) => {
-        //retirar, feito somente para testar os status. tem que colocar oq vem da api
-        accuracy = 0.70
+    const getColor = (index: number, totalDots: number, accuracy: number) => {
+        const percentage = (index + 1) / totalDots;
+        
+        //retirar esse accuracy, feito somente para teste. Fazer pegar da api.
+        accuracy = 0.90
 
-        if (accuracy <= 0.33) return 'red';
-        if (accuracy <= 0.66) return 'yellow';
-        return 'green';
+        if (percentage <= accuracy) {
+          if (accuracy <= 0.5) return 'red';
+          if (percentage <= 0.75) return 'yellow';
+          return 'green';
+        }
+
+        return '#e0e0e0';
       };
 
     return (
@@ -64,7 +70,15 @@ export default function ConfirmandoTexto() {
             </Card>
 
             <View style={styles.progressBarContainer}>
-                <View style={[styles.progressBar, { backgroundColor: getColor(accuracy) }]} />
+                {[...Array(10)].map((_, index) => (
+                <View
+                    key={index}
+                    style={[
+                    styles.dot,
+                    { backgroundColor: getColor(index, 10, accuracy) },
+                    ]}
+                />
+                ))}
             </View>
             
             <TextInput
@@ -99,23 +113,33 @@ const styles = StyleSheet.create({
     },
      card: {
         marginBottom: 10,
-        padding: 10,
+        paddingTop: 4,
+        paddingBottom: 4,
+        paddingEnd: 8,
+        paddingStart: 8,
+        width: 160
       },
       cardContent: {
         flexDirection: 'row',
         alignItems: 'center',
       },
       progressBarContainer: {
-        height: 10,
-        width: '100%',
-        backgroundColor: '#e0e0e0',
-        borderRadius: 5,
+        flexDirection: 'row',
         marginBottom: 10,
-        overflow: 'hidden',
+        columnGap: 1,
+        justifyContent: 'center',
+        paddingStart: 15,
+        paddingEnd: 15
       },
       progressBar: {
         height: '100%',
         width: '100%', // This should reflect the accuracy percentage
+      },
+      dot: {
+        width: 31,
+        height: 8,
+        borderRadius: 5,
+        marginHorizontal: 2,
       },
     textInput: {
         flex: 1,
