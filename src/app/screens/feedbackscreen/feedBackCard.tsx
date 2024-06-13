@@ -33,7 +33,8 @@ interface Competency {
     competency: Competency;
   }
 
-const FeedBackCard: React.FC<FeedBackCardProps> = ({ competency}) => {
+
+  const FeedBackCard: React.FC<FeedBackCardProps> = ({ competency }) => {
     const [expanded, setExpanded] = React.useState(false);
   
     return (
@@ -41,45 +42,73 @@ const FeedBackCard: React.FC<FeedBackCardProps> = ({ competency}) => {
         <TouchableOpacity onPress={() => setExpanded(!expanded)}>
           <Card.Content>
             <View style={styles.header}>
-              <Title>{competency.title}</Title>
-              <IconButton
-                icon={expanded ? 'chevron-up' : 'chevron-down'}
-                size={20}
-                onPress={() => setExpanded(!expanded)}
-              />
+              <Text style={styles.title}>{competency.title}</Text>
+              <View style={styles.scoreContainer}>
+                <Text style={styles.score}>{competency.score} Pontos</Text>
+                <IconButton
+                  icon={expanded ? 'chevron-up' : 'chevron-down'}
+                  size={20}
+                  onPress={() => setExpanded(!expanded)}
+                />
+              </View>
             </View>
-            <Paragraph>Pontuação: {competency.score}</Paragraph>
+            <Paragraph style={styles.description}>{competency.excerpt}</Paragraph>
           </Card.Content>
         </TouchableOpacity>
         {expanded && (
           <Card.Content style={styles.expandedContent}>
-            <Paragraph>Trecho do Texto: {competency.excerpt}</Paragraph>
-            <Paragraph>Feedback: {competency.feedback}</Paragraph>
-            <Paragraph>Acertos: {competency.hits}</Paragraph>
-            <Paragraph>Erros: {competency.errors}</Paragraph>
+            <Text style={styles.parecerTitle}>Parecer:</Text>
+            <Paragraph>{competency.feedback}</Paragraph>
           </Card.Content>
         )}
       </Card>
     );
   };
-
+  
   const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      padding: 10,
-      backgroundColor: '#f5f5f5',
-    },
     card: {
+      display: 'flex',
+      padding: 15,
+      flexDirection: 'column',
+      alignItems: 'flex-start',
+      gap: 4,
+      backgroundColor: 'white',
       marginBottom: 10,
+      borderRadius: 5
     },
     header: {
       flexDirection: 'row',
       justifyContent: 'space-between',
       alignItems: 'center',
+      width: '100%',
+    },
+    title: {
+      fontFamily: 'Roboto',
+      fontSize: 16,
+      fontStyle: 'normal',
+      fontWeight: 'bold',
+    },
+    scoreContainer: {
+      flexDirection: 'row',
+      alignItems: 'center',
+    },
+    score: {
+      fontSize: 16,
+      fontWeight: 'bold',
+    },
+    description: {
+      marginTop: 4,
+      marginBottom: 4,
     },
     expandedContent: {
-      marginTop: 10,
+      marginTop: 4,
+    },
+    parecerTitle: {
+      fontWeight: 'bold',
+      fontSize: 16,
+      marginTop: 4,
+      marginBottom: 4,
     },
   });
-
+  
   export default FeedBackCard;

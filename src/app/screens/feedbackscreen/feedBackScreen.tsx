@@ -162,11 +162,11 @@ const FeedBackScreen: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 10,
+    padding: 15,
     backgroundColor: '#f5f5f5',
   },
   card: {
-    marginBottom: 10,
+    marginBottom: 4,
   },
   header: {
     flexDirection: 'row',
@@ -174,7 +174,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   expandedContent: {
-    marginTop: 10,
+    marginTop: 4,
   },
 });
 
