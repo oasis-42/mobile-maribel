@@ -1,12 +1,13 @@
 
-import React, { View, Image, TextInput, StyleSheet } from "react-native";
-import { Button, ActivityIndicator } from "react-native-paper";
+import React, { View, Image, Text, TextInput, StyleSheet } from "react-native";
+import { Button, ActivityIndicator, IconButton, Card } from "react-native-paper";
 import AppContext from "../../../contexts/AppContext";
 import { useContext, useState } from "react";
 import { router } from "expo-router";
 
 export default function ConfirmandoTexto() {
     const [loading, setLoading] = useState(false);
+    const [accuracy, setAccuracy] = useState(0); 
     const { text, setText, setFeedback } = useContext<any>(AppContext);
 
     // const textvar = "Com a R.I.P Privacidade evolução dos meios de comunicação, ninguém tem mais privacidade. Tipo é impossível \"dar perdido\" Sem que saibam onde você esteve e quando esteve. Fornecemos nossos dados a empresas poderosas sem termos noção do que será feito com isso. Hoje trocamos nossas informações em troca de entretenimento barato. Pior que isso, compartilhamos por vontade própria só para interagir com a galera, vejo isso como algo preocupante. Pois as grandes empresas do mal que Usam essas informações, nos veem como carteiras com pernas e tem poder para criar governos que as representem. Algo precisa ser feito a respeito disso. Se informação é poder, qual é o poder daqueles que tem toda a informação do mundo. É preciso que nossos melhores cientistas trabalhem nisso para pensar em soluções para nos proteger. Senão seremos escravizados por grandes corporações e terá um futuro punk.";
@@ -44,8 +45,28 @@ export default function ConfirmandoTexto() {
         router.push({ pathname: "screens/camera/cameraScreen" });
     }
 
+    const getColor = (accuracy: number) => {
+        //retirar, feito somente para testar os status. tem que colocar oq vem da api
+        accuracy = 0.70
+
+        if (accuracy <= 0.33) return 'red';
+        if (accuracy <= 0.66) return 'yellow';
+        return 'green';
+      };
+
     return (
         <View style={styles.container}>
+            <Card style={styles.card}>
+                <View style={styles.cardContent}>
+                <Text>Nível de precisão</Text>
+                <IconButton icon="information" size={20} onPress={() => {}} />
+                </View>
+            </Card>
+
+            <View style={styles.progressBarContainer}>
+                <View style={[styles.progressBar, { backgroundColor: getColor(accuracy) }]} />
+            </View>
+            
             <TextInput
                 editable={!loading}
                 multiline
@@ -76,6 +97,26 @@ const styles = StyleSheet.create({
         padding: 20,
         backgroundColor: '#f8f8f8', // cor de fundo opcional
     },
+     card: {
+        marginBottom: 10,
+        padding: 10,
+      },
+      cardContent: {
+        flexDirection: 'row',
+        alignItems: 'center',
+      },
+      progressBarContainer: {
+        height: 10,
+        width: '100%',
+        backgroundColor: '#e0e0e0',
+        borderRadius: 5,
+        marginBottom: 10,
+        overflow: 'hidden',
+      },
+      progressBar: {
+        height: '100%',
+        width: '100%', // This should reflect the accuracy percentage
+      },
     textInput: {
         flex: 1,
         padding: 10,
