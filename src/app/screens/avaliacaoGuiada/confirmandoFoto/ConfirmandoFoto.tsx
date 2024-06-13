@@ -37,35 +37,37 @@ export default function ConfirmandoFoto() {
     }
 
     async function handleOnPressContinuar() {
+        setLoading(true);
         await processOcr();
+        setLoading(false);
         router.push({ pathname: "screens/avaliacaoGuiada/confirmandoTexto/ConfirmandoTexto" });
     }
 
-    function handleOnPressTakeAgain() {
+    function handleOnPressTentarNovamente() {
         router.push({ pathname: "screens/camera/cameraScreen" });
     }
 
+
     return (
         <View style={styles.mainContainer}>
-            {loading ? (
-                <ActivityIndicator animating={true} />
-            ) : (
-                <View style={styles.imageContainer}>
-                    <Image
-                        source={{ uri: `data:image/png;base64,${base64Image}` }}
-                        style={styles.image}
-                        resizeMode="contain"
-                    />
-                </View>
-            )}
-
+            <View style={styles.imageContainer}>
+                {/* {loading ? (
+                    <ActivityIndicator size="large" color="#044884" />
+                ) : ( */}
+                <Image
+                    source={{ uri: `data:image/png;base64,${base64Image}` }}
+                    style={styles.image}
+                    resizeMode="contain"
+                />
+                {/* )} */}
+            </View>
             <View style={styles.buttonContainer}>
-                <Button style={styles.btn_again} onPress={handleOnPressTakeAgain}>
+                <Button style={styles.btn_again} onPress={handleOnPressTentarNovamente} disabled={loading}>
                     Tirar outra foto
                 </Button>
 
                 <Button style={styles.btn_next} onPress={handleOnPressContinuar}>
-                    Continuar
+                    {loading ? <ActivityIndicator size="small" color="white" /> : "Continuar"}
                 </Button>
             </View>
         </View>
@@ -75,8 +77,7 @@ export default function ConfirmandoFoto() {
 const styles = StyleSheet.create({
     mainContainer: {
         flex: 1,
-        justifyContent: 'center',
-        backgroundColor: '#000', // optional
+        backgroundColor: '#000', // optional, makes background black
     },
     imageContainer: {
         flex: 1,
@@ -100,10 +101,11 @@ const styles = StyleSheet.create({
         height: 56,
         flex: 1,
         justifyContent: "center",
+        alignItems: "center",
         padding: 8,
         borderRadius: 7,
         borderColor: "#044884",
-        borderWidth: 1, // Added to make border visible
+        borderWidth: 1,
     },
     btn_next: {
         backgroundColor: "#044884",
@@ -111,7 +113,8 @@ const styles = StyleSheet.create({
         height: 56,
         flex: 1,
         justifyContent: "center",
+        alignItems: "center",
         padding: 8,
-        borderRadius: 7
+        borderRadius: 7,
     },
 });
