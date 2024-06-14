@@ -7,7 +7,7 @@ import { router } from "expo-router";
 
 export default function ConfirmandoTexto() {
     const [loading, setLoading] = useState(false);
-    const [accuracy, setAccuracy] = useState(0); 
+    const [accuracy, setAccuracy] = useState(0);
     const { text, setText, setFeedback } = useContext<any>(AppContext);
 
     // const textvar = "Com a R.I.P Privacidade evolução dos meios de comunicação, ninguém tem mais privacidade. Tipo é impossível \"dar perdido\" Sem que saibam onde você esteve e quando esteve. Fornecemos nossos dados a empresas poderosas sem termos noção do que será feito com isso. Hoje trocamos nossas informações em troca de entretenimento barato. Pior que isso, compartilhamos por vontade própria só para interagir com a galera, vejo isso como algo preocupante. Pois as grandes empresas do mal que Usam essas informações, nos veem como carteiras com pernas e tem poder para criar governos que as representem. Algo precisa ser feito a respeito disso. Se informação é poder, qual é o poder daqueles que tem toda a informação do mundo. É preciso que nossos melhores cientistas trabalhem nisso para pensar em soluções para nos proteger. Senão seremos escravizados por grandes corporações e terá um futuro punk.";
@@ -47,40 +47,64 @@ export default function ConfirmandoTexto() {
 
     const getColor = (index: number, totalDots: number, accuracy: number) => {
         const percentage = (index + 1) / totalDots;
-        
+
         //retirar esse accuracy, feito somente para teste. Fazer pegar da api.
         accuracy = 0.90
 
         if (percentage <= accuracy) {
-          if (accuracy <= 0.5) return 'red';
-          if (percentage <= 0.75) return 'yellow';
-          return 'green';
+            if (accuracy <= 0.5) return 'red';
+            if (percentage <= 0.75) return 'yellow';
+            return 'green';
         }
 
         return '#e0e0e0';
-      };
+    };
 
     return (
         <View style={styles.container}>
-            <Card style={styles.card}>
+            {/* <Card style={styles.card}>
                 <View style={styles.cardContent}>
                 <Text>Nível de precisão</Text>
                 <IconButton icon="information" size={20} onPress={() => {}} />
                 </View>
-            </Card>
+            </Card> */}
+
+            <View
+                style={{
+                    flexDirection: "row",
+                    alignItems: "center",
+                    paddingStart: 8,
+                    paddingEnd: 8,
+                    paddingTop: 4,
+                    paddingBottom: 4,
+                    // justifyContent: "space-between",
+                    justifyContent: "center",
+                    gap: 8,
+                    borderWidth: 1,
+                    borderRadius: 5,
+                    borderColor: "#D7D7D7",
+                    backgroundColor: "white",
+                    width: 180,
+                    height: 40
+                }}
+            >
+                <Text style={{ fontWeight: "600", fontSize: 16, lineHeight: 24}}>Nível de precisão</Text>
+                <IconButton icon="information" size={20} onPress={() => {}} />
+            </View>
+
 
             <View style={styles.progressBarContainer}>
                 {[...Array(10)].map((_, index) => (
-                <View
-                    key={index}
-                    style={[
-                    styles.dot,
-                    { backgroundColor: getColor(index, 10, accuracy) },
-                    ]}
-                />
+                    <View
+                        key={index}
+                        style={[
+                            styles.dot,
+                            { backgroundColor: getColor(index, 10, accuracy) },
+                        ]}
+                    />
                 ))}
             </View>
-            
+
             <TextInput
                 editable={!loading}
                 multiline
@@ -100,7 +124,7 @@ export default function ConfirmandoTexto() {
                     {loading ? <ActivityIndicator animating={true} color="white" /> : "Usar texto"}
                 </Button>
             </View>
-        </View>
+        </View >
     );
 }
 
@@ -110,37 +134,38 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         padding: 20,
         backgroundColor: '#f8f8f8', // cor de fundo opcional
+        rowGap: 4
     },
-     card: {
+    card: {
         marginBottom: 10,
         paddingTop: 4,
         paddingBottom: 4,
         paddingEnd: 8,
         paddingStart: 8,
         width: 160
-      },
-      cardContent: {
+    },
+    cardContent: {
         flexDirection: 'row',
         alignItems: 'center',
-      },
-      progressBarContainer: {
+    },
+    progressBarContainer: {
         flexDirection: 'row',
         marginBottom: 10,
         columnGap: 1,
         justifyContent: 'center',
         paddingStart: 15,
         paddingEnd: 15
-      },
-      progressBar: {
+    },
+    progressBar: {
         height: '100%',
         width: '100%', // This should reflect the accuracy percentage
-      },
-      dot: {
+    },
+    dot: {
         width: 31,
         height: 8,
         borderRadius: 5,
         marginHorizontal: 2,
-      },
+    },
     textInput: {
         flex: 1,
         padding: 10,

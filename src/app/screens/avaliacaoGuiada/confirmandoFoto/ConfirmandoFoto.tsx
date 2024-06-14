@@ -62,11 +62,11 @@ export default function ConfirmandoFoto() {
                 {/* )} */}
             </View>
             <View style={styles.buttonContainer}>
-                <Button style={styles.btn_again} onPress={handleOnPressTentarNovamente} disabled={loading}>
+                <Button style={styles.btn_again} onPress={handleOnPressTentarNovamente} disabled={loading} textColor='#044884'>
                     Tirar outra foto
                 </Button>
 
-                <Button style={styles.btn_next} onPress={handleOnPressContinuar}>
+                <Button style={styles.btn_next} onPress={handleOnPressContinuar} textColor='#fff'>
                     {loading ? <ActivityIndicator size="small" color="white" /> : "Continuar"}
                 </Button>
             </View>
