@@ -33,7 +33,7 @@ export default function OnBoarding1() {
           </Card.Content>
         </Card>
         <View style={{ alignItems: "center" }}>
-          <Image source={require("../../../../assets/processImg.png")} />
+          <Image style={{ width: 50, height: 300 }} source={require("../../../../assets/processImg.png")} />
         </View>
         <View
           style={{

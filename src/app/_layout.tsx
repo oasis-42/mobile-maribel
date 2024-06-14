@@ -31,6 +31,18 @@ export default function RootLayout() {
               },
             }}
           />
+          {/* <Stack.Screen
+            name="screens/userAuth/login"
+            options={{
+              title: "Maribel",
+              headerTitleAlign: "center",
+              headerTintColor: "#044884",
+              headerTitleStyle: {
+                fontSize: 30,
+                fontWeight: "700",
+              },
+            }}
+          /> */}
           <Stack.Screen
             name="screens/onboardings/onBoarding1"
             options={{ title: "Etapa 1 de 3", headerTitleAlign: "center" }}
@@ -67,6 +79,7 @@ export default function RootLayout() {
             name="screens/avaliacaoGuiada/confirmandoTexto/ConfirmandoTexto"
             options={{ title: "Confirmando Texto", headerTitleAlign: "center" }}
           />
+          
         </Stack>
       </PaperProvider>
     </AppContext.Provider>
