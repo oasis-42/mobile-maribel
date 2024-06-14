@@ -20,7 +20,8 @@ export default function ConfirmandoTexto() {
 
     async function handleFeedback() {
         const raw = JSON.stringify({
-            "text": text
+            "text": text,
+            "confidence": accuracy 
         });
 
         const response = await fetch("https://api-maribel-production.up.railway.app/api/v1/ocr/feedback", {
@@ -47,9 +48,6 @@ export default function ConfirmandoTexto() {
 
     const getColor = (index: number, totalDots: number, accuracy: number) => {
         const percentage = (index + 1) / totalDots;
-
-        //retirar esse accuracy, feito somente para teste. Fazer pegar da api.
-        accuracy = 0.90
 
         if (percentage <= accuracy) {
             if (accuracy <= 0.5) return 'red';
