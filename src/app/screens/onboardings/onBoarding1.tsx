@@ -3,6 +3,7 @@ import { Image, Pressable, ScrollView, View } from "react-native";
 import DefaultButton from "../../components/DefaultButton";
 import { useRouter } from 'expo-router';
 
+
 export default function OnBoarding1() {
   const router = useRouter();
 

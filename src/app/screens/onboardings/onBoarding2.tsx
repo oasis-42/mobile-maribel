@@ -7,7 +7,7 @@ import { useRouter } from 'expo-router';
 export default function OnBoarding1() {
   const router = useRouter();
   const { width } = useWindowDimensions();
-  const cardWidth = width * 0.9272; // 92.72% of the screen width
+ 
 
   return (
     <PaperProvider>

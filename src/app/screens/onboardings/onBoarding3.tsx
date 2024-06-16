@@ -7,7 +7,6 @@ import { useRouter } from 'expo-router';
 
 export default function OnBoarding1() {
   const router = useRouter();
-  const { width } = useWindowDimensions();
 
   // Estado para os Switches
   const [isSwitchOn1, setIsSwitchOn1] = useState(false);
@@ -64,7 +63,7 @@ export default function OnBoarding1() {
 
           <DefaultButton
             mode="contained"
-            onPress={() => router.push('/screens/onboardings/onBoarding3')}
+            onPress={() => router.push('/screens/home/schedule')}
             style={{ marginTop: 32 }}
           >
             Continuar
