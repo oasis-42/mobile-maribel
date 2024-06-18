@@ -10,7 +10,7 @@ export default function CardExperience() {
             <Card.Title
                 title="Nome usuário"
                 subtitle="Você é dedicado"
-                left={(props) => <Avatar.Image size={38} source={require('../../assets/user_image.svg')} />}
+                left={(props) => <Avatar.Image size={38} source={require('../../../../assets/user_image.svg')} />}
             />
             <ProgressBar progress={isProgress} color={MD3Colors.primary0} />
             <Card.Content>
