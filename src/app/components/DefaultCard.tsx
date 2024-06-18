@@ -1,8 +1,22 @@
-import React from 'react';
-import { useWindowDimensions, View, StyleSheet } from 'react-native';
+import React, { FC, ReactNode } from 'react';
+import { useWindowDimensions, View, StyleSheet, StyleProp, ViewStyle, TextStyle } from 'react-native';
 import { Card, Text, Switch } from 'react-native-paper';
 
-const DefaultCard = ({
+interface DefaultCardProps {
+  title: string;
+  children: ReactNode;
+  titleStyle?: StyleProp<TextStyle>;
+  contentStyle?: StyleProp<ViewStyle>;
+  style?: StyleProp<ViewStyle>;
+  borderColor?: string;
+  backgroundColor?: string;
+  textColor?: string;
+  showSwitch?: boolean;
+  switchValue?: boolean;
+  onSwitchChange?: (value: boolean) => void;
+}
+
+const DefaultCard: FC<DefaultCardProps> = ({
   title,
   children,
   titleStyle = {},
@@ -28,7 +42,7 @@ const DefaultCard = ({
           <Switch 
             value={switchValue} 
             onValueChange={onSwitchChange} 
-            color= "#044884"
+            color="#044884"
             style={styles.switch}
           />
         )}

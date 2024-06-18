@@ -1,5 +1,5 @@
 import { PaperProvider, Text } from "react-native-paper";
-import { Pressable, ScrollView, View, useWindowDimensions } from "react-native";
+import { ScrollView, View, useWindowDimensions } from "react-native";
 import DefaultButton from "../../components/DefaultButton";
 import DefaultCard from "../../components/DefaultCard";
 import { useRouter } from 'expo-router';

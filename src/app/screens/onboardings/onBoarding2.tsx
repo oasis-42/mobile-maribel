@@ -4,7 +4,7 @@ import DefaultButton from "../../components/DefaultButton";
 import DefaultCard from "../../components/DefaultCard";
 import { useRouter } from 'expo-router';
 
-export default function OnBoarding1() {
+export default function OnBoarding2() {
   const router = useRouter();
   const { width } = useWindowDimensions();
  

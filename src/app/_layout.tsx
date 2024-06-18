@@ -1,6 +1,6 @@
 import { Stack, useRouter } from "expo-router";
 import { PaperProvider, IconButton } from "react-native-paper";
-import AppContext from "./contexts/AppContext"; // Caminho ajustado
+import AppContext from "./contexts/AppContext";
 import { useState } from "react";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -19,6 +19,7 @@ export default function RootLayout() {
       feedback, 
       setFeedback
     }}>
+      
       <PaperProvider>
         <Stack>
           <Stack.Screen
@@ -31,6 +32,7 @@ export default function RootLayout() {
                 fontSize: 30,
                 fontWeight: "700",
               },
+              headerShadowVisible: false,
             }}
           />
           <Stack.Screen
@@ -98,6 +100,7 @@ export default function RootLayout() {
           />
         </Stack>
       </PaperProvider>
+      
     </AppContext.Provider>
   );
 }

@@ -4,7 +4,7 @@ import DefaultButton from "../../components/DefaultButton";
 import { useRouter } from 'expo-router';
 
 
-export default function OnBoarding1() {
+export default function OnBoarding() {
   const router = useRouter();
 
   return (
@@ -43,7 +43,7 @@ export default function OnBoarding1() {
           </DefaultButton>
           
           <Pressable
-            onPress={() => alert("Ola!")}
+            onPress={() => router.push('/screens/home/schedule')}
             style={{
               alignItems: "center",
               padding: 8,

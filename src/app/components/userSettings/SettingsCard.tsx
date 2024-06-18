@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useWindowDimensions, View, StyleSheet } from 'react-native';
 import { Card, Text, Switch } from 'react-native-paper';
+import { SwitchContext } from '../../contexts/SwitchContext'; 
 
 interface SettingsCardProps {
   id: string;
@@ -13,8 +14,6 @@ interface SettingsCardProps {
   backgroundColor?: string;
   textColor?: string;
   showSwitch?: boolean;
-  switchValue?: boolean;
-  onSwitchChange?: (value: boolean) => void;
 }
 
 const SettingsCard: React.FC<SettingsCardProps> = ({
@@ -28,34 +27,27 @@ const SettingsCard: React.FC<SettingsCardProps> = ({
   backgroundColor = "#fff",
   textColor = "#2E3E4B",
   showSwitch = false,
-  switchValue = false,
-  onSwitchChange = () => {},
 }) => {
   const { width } = useWindowDimensions();
   const cardWidth = width * 0.9272; // 92.72% of the screen width
+  const context = useContext(SwitchContext);
+
+  if (!context) {
+    throw new Error('SwitchContext must be used within a SwitchProvider');
+  }
+
+  const { switchStates, updateSwitchState } = context;
+  const [isSwitchEnabled, setIsSwitchEnabled] = useState<boolean>(switchStates[id] || false);
+
+  useEffect(() => {
+    if (switchStates[id] !== undefined) {
+      setIsSwitchEnabled(switchStates[id]);
+    }
+  }, [switchStates, id]);
 
   const handleSwitchChange = (value: boolean) => {
-    // Fazer a requisição com o ID do card e o estado do switch
-    fetch('YOUR_API_ENDPOINT', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        id,
-        switchValue: value,
-      }),
-    })
-    .then(response => response.json())
-    .then(data => {
-      console.log('Success:', data);
-    })
-    .catch((error) => {
-      console.error('Error:', error);
-    });
-
-    // Chamar a função onSwitchChange passada como prop
-    onSwitchChange(value);
+    setIsSwitchEnabled(value); // Atualiza o estado local primeiro para garantir resposta rápida ao clique
+    updateSwitchState(id, value);
   };
 
   return (
@@ -66,7 +58,7 @@ const SettingsCard: React.FC<SettingsCardProps> = ({
         </Text>
         {showSwitch && (
           <Switch 
-            value={switchValue} 
+            value={isSwitchEnabled} 
             onValueChange={handleSwitchChange} 
             color="#044884"
             style={styles.switch}

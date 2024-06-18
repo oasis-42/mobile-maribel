@@ -1,6 +1,6 @@
 import React from "react";
 import { useWindowDimensions, View, Image, ScrollView } from "react-native";
-import DefaultButton from "../app/components/DefaultButton";
+import DefaultButton from "./components/DefaultButton";
 import { PaperProvider, Text } from "react-native-paper";
 import { useRouter } from 'expo-router';
 import helloUser from "../../assets/userAuth/helloUser.png";
