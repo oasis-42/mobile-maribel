@@ -28,7 +28,7 @@ export default function Schedule() {
           
           <DefaultButton 
             mode="contained" 
-            onPress={() => router.push('/screens/onboardings/onBoarding1')}
+            onPress={() => router.push('/screens/typeOfAssessment/themeSelection')}
             style={{ marginTop: 32 }}
           >
             Avaliar redação

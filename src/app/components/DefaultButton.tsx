@@ -10,6 +10,7 @@ interface DefaultButtonProps extends Omit<ButtonProps, 'mode' | 'icon'> {
   style?: StyleProp<ViewStyle>;
   contentStyle?: StyleProp<ViewStyle>;
   labelStyle?: StyleProp<TextStyle>;
+  disabled?: boolean; // Adicione esta linha para incluir a prop disabled
 }
 
 const DefaultButton: FC<DefaultButtonProps> = ({
@@ -19,14 +20,29 @@ const DefaultButton: FC<DefaultButtonProps> = ({
   children,
   style = {},
   contentStyle = {},
-  labelStyle = {}
+  labelStyle = {},
+  disabled = false, 
 }) => {
   const { width } = useWindowDimensions();
   const buttonWidth = width * 0.9272; // 92.72% of the screen width
 
   const defaultStyle = mode === 'contained' 
-    ? { marginBottom: 8, backgroundColor: "#044884", borderRadius: 5, height: 56, marginTop: 8, width: buttonWidth }
-    : { marginBottom: 8, borderColor: "#D7D7D7", borderRadius: 5, height: 56, marginTop: 8, width: buttonWidth };
+    ? { 
+        marginBottom: 8, 
+        backgroundColor: disabled ? "#B1C6D9" : "#044884", // Use cinza se desabilitado
+        borderRadius: 5, 
+        height: 56, 
+        marginTop: 8, 
+        width: buttonWidth 
+      }
+    : { 
+        marginBottom: 8, 
+        borderColor: "#D7D7D7", 
+        borderRadius: 5, 
+        height: 56, 
+        marginTop: 8, 
+        width: buttonWidth 
+      };
 
   return (
     <Button 
@@ -36,6 +52,7 @@ const DefaultButton: FC<DefaultButtonProps> = ({
       contentStyle={[{ height: 56, justifyContent: 'center' }, contentStyle]}
       labelStyle={labelStyle}
       onPress={onPress}
+      disabled={disabled} // Passe a prop disabled aqui
     >
       {children}
     </Button>

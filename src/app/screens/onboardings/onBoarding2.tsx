@@ -1,12 +1,12 @@
 import { PaperProvider, Text } from "react-native-paper";
-import { Pressable, ScrollView, View, useWindowDimensions } from "react-native";
+import { ScrollView, View, useWindowDimensions } from "react-native";
 import DefaultButton from "../../components/DefaultButton";
 import DefaultCard from "../../components/DefaultCard";
 import { useRouter } from 'expo-router';
 
 export default function OnBoarding2() {
   const router = useRouter();
-  const { width } = useWindowDimensions();
+ 
  
 
   return (
@@ -35,20 +35,23 @@ export default function OnBoarding2() {
         <View style={{ alignItems: "center", justifyContent: "flex-start", width: "100%"}}>
           
           <DefaultCard
+            style= {{ height: 136 }}
             title="Avaliação guiada"
           >
             <Text variant="bodyMedium">Faça a sua avaliação com maior assertividade ao seguir nossos temas e instruções predefinidos</Text>
           </DefaultCard>
           <DefaultCard
+            style= {{ height: 136 }}
             title="Avaliação adaptativa"
           >
             <Text variant="bodyMedium">Faça a sua avaliação com novas percepções ao deixar a inteligência artificial sem instruções</Text>
           </DefaultCard>
           
           <DefaultButton 
+          
             mode="contained" 
             onPress={() => router.push('/screens/onboardings/onBoarding3')}
-            style={{ marginTop: 32 }}
+            style={{ marginTop: 32}}
           >
             Continuar
           </DefaultButton>

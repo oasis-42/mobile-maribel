@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+
 import { PaperProvider, Text } from 'react-native-paper';
 import { ScrollView, View, useWindowDimensions } from 'react-native';
 import DefaultButton from '../../components/DefaultButton';

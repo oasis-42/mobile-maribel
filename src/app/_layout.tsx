@@ -57,9 +57,9 @@ export default function RootLayout() {
                 fontSize: 30,
                 fontWeight: "700",
               },
-              headerLeft: () => null, // Remove o ícone de voltar
-              gestureEnabled: false, // Desabilita os gestos de navegação de retorno
-              headerBackVisible: false, // Remove o ícone de voltar
+              headerLeft: () => null, 
+              gestureEnabled: false, 
+              headerBackVisible: false, 
               headerRight: () => (
                 <IconButton 
                   icon={({ size, color }) => (
@@ -97,6 +97,10 @@ export default function RootLayout() {
           <Stack.Screen
             name="screens/home/settings"
             options={{ title: "Configurações", headerTitleAlign: "center" }}
+          />
+          <Stack.Screen
+            name="screens/typeOfAssessment/themeSelection"
+            options={{ title: "Criando avaliação", headerTitleAlign: "center" }}
           />
         </Stack>
       </PaperProvider>
