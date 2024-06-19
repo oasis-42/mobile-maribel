@@ -10,7 +10,7 @@ interface DefaultButtonProps extends Omit<ButtonProps, 'mode' | 'icon'> {
   style?: StyleProp<ViewStyle>;
   contentStyle?: StyleProp<ViewStyle>;
   labelStyle?: StyleProp<TextStyle>;
-  disabled?: boolean; // Adicione esta linha para incluir a prop disabled
+  disabled?: boolean; 
 }
 
 const DefaultButton: FC<DefaultButtonProps> = ({
@@ -29,7 +29,7 @@ const DefaultButton: FC<DefaultButtonProps> = ({
   const defaultStyle = mode === 'contained' 
     ? { 
         marginBottom: 8, 
-        backgroundColor: disabled ? "#B1C6D9" : "#044884", // Use cinza se desabilitado
+        backgroundColor: disabled ? "#B1C6D9" : "#044884", 
         borderRadius: 5, 
         height: 56, 
         marginTop: 8, 
@@ -52,7 +52,7 @@ const DefaultButton: FC<DefaultButtonProps> = ({
       contentStyle={[{ height: 56, justifyContent: 'center' }, contentStyle]}
       labelStyle={labelStyle}
       onPress={onPress}
-      disabled={disabled} // Passe a prop disabled aqui
+      disabled={disabled} 
     >
       {children}
     </Button>
