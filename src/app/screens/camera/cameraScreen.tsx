@@ -2,6 +2,7 @@ import { CameraView, useCameraPermissions } from 'expo-camera';
 import { useContext, useRef, useState } from 'react';
 import { Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { IconButton, ActivityIndicator } from "react-native-paper";
+import * as ImagePicker from 'expo-image-picker';
 import api from '../../../sdk/api';
 import AppContext from '../../contexts/AppContext';
 import { router } from 'expo-router';
@@ -10,6 +11,7 @@ export default function Camera() {
     const [loading, setLoading] = useState(false);
     const orientacaoDaCamera = "back";
     const [permission, requestPermission] = useCameraPermissions();
+    const [galleryPermission, requestGalleryPermission] = ImagePicker.useMediaLibraryPermissions();
 
     const cameraRef = useRef<CameraView>();
 
@@ -28,8 +30,21 @@ export default function Camera() {
         );
     }
 
+    if (!galleryPermission) {
+        return <View />;
+    }
+
+    if (!galleryPermission.granted) {
+        return (
+            <View style={styles.container}>
+                <Text style={{ textAlign: 'center' }}>We need your permission to access the gallery</Text>
+                <Button onPress={requestGalleryPermission} title="grant permission" />
+            </View>
+        );
+    }
+
     async function takePicture() {
-        setLoading(true)
+        setLoading(true);
         const capturedPicture = await cameraRef.current?.takePictureAsync({ base64: true, imageType: 'png' });
         const base64Image = capturedPicture?.base64;
 
@@ -37,25 +52,53 @@ export default function Camera() {
 
         setBase64Image(base64Image);
 
-        setLoading(false)
+        setLoading(false);
         router.push({ pathname: "screens/avaliacaoGuiada/confirmandoFoto/ConfirmandoFoto" });
     }
+
+    async function pickImage() {
+        let result = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.Images,
+            allowsEditing: true,
+            base64: true,
+        });
+
+        if (!result.canceled && result.assets && result.assets.length > 0) {
+            const base64Image = result.assets[0].base64;
+
+            if (base64Image) {
+                setBase64Image(base64Image);
+                router.push({ pathname: "screens/avaliacaoGuiada/confirmandoFoto/ConfirmandoFoto" });
+            }
+        }
+    }
+
 
     return (
         <View style={styles.container}>
             <CameraView style={styles.camera} facing={orientacaoDaCamera} ref={(ref) => ref ? cameraRef.current = ref : null}>
                 <View style={styles.buttonContainer}>
                     {loading ? (
-                        <ActivityIndicator style={styles.buttonContainer} animating={true} />
+                        <ActivityIndicator style={styles.loading} animating={true} />
                     ) : (
-                        <TouchableOpacity style={styles.button} onPress={takePicture}>
-                            <IconButton
-                                icon="camera"
-                                iconColor='#fff'
-                                size={38}
-                                containerColor='#044884'
-                            />
-                        </TouchableOpacity>
+                        <>
+                            <TouchableOpacity style={styles.galleryButton} onPress={pickImage}>
+                                <IconButton
+                                    icon="image"
+                                    iconColor='#fff'
+                                    size={28}
+                                    containerColor='#808080'
+                                />
+                            </TouchableOpacity>
+                            <TouchableOpacity style={styles.cameraButton} onPress={takePicture}>
+                                <IconButton
+                                    icon="camera"
+                                    iconColor='#fff'
+                                    size={38}
+                                    containerColor='#044884'
+                                />
+                            </TouchableOpacity>
+                        </>
                     )}
                 </View>
             </CameraView>
@@ -72,19 +115,27 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     buttonContainer: {
-        flex: 1,
+        position: 'absolute',
+        bottom: 60,
+        left: 0,
+        right: 0,
         flexDirection: 'row',
-        backgroundColor: 'transparent',
-        margin: 64,
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingHorizontal: 20,
     },
-    button: {
-        flex: 1,
-        alignSelf: 'flex-end',
+    loading: {
+        alignSelf: 'center',
+    },
+    galleryButton: {
+        position: 'absolute',
+        left: 50,
+        // bottom: 30,
+        alignSelf: 'center',
         alignItems: 'center',
     },
-    text: {
-        fontSize: 24,
-        fontWeight: 'bold',
-        color: 'white',
+    cameraButton: {
+        alignSelf: 'center',
+        alignItems: 'center',
     },
 });

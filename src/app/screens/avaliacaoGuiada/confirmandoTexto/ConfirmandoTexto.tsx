@@ -114,11 +114,11 @@ export default function ConfirmandoTexto() {
             />
 
             <View style={styles.buttonContainer}>
-                <Button style={styles.btn_again} onPress={handleOnPressTentarNovamente} disabled={loading}>
+                <Button style={styles.btn_again} onPress={handleOnPressTentarNovamente} disabled={loading} textColor='#044884'>
                     Tentar novamente
                 </Button>
 
-                <Button style={styles.btn_next} onPress={handleOnPressUsarTexto}>
+                <Button style={styles.btn_next} onPress={handleOnPressUsarTexto} textColor='#fff'>
                     {loading ? <ActivityIndicator animating={true} color="white" /> : "Usar texto"}
                 </Button>
             </View>
