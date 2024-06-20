@@ -32,6 +32,10 @@ export default function RootLayout() {
                 fontSize: 30,
                 fontWeight: "700",
               },
+              headerLeft: () => null, 
+              gestureEnabled: false, 
+              headerBackVisible: false, 
+              
               headerShadowVisible: false,
             }}
           />
@@ -102,7 +106,16 @@ export default function RootLayout() {
             name="screens/typeOfAssessment/themeSelection"
             options={{ title: "Criando avaliação", headerTitleAlign: "center" }}
           />
+           <Stack.Screen
+            name="screens/typeOfAssessment/motivationalTexts"
+            options={{ title: "Criando avaliação", headerTitleAlign: "center" }}
+          />
+          <Stack.Screen
+            name="screens/typeOfAssessment/fileChoice"
+            options={{ title: "Criando avaliação", headerTitleAlign: "center" }}
+          />
         </Stack>
+        
       </PaperProvider>
       
     </AppContext.Provider>
