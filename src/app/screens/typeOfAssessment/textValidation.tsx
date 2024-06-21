@@ -1,14 +1,28 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { View, TextInput, StyleSheet } from "react-native";
 import { Button, ActivityIndicator, IconButton, Text } from "react-native-paper";
 import AppContext from "../../contexts/AppContext";
-import { useRouter } from "expo-router";
+import { useRouter, useLocalSearchParams  } from "expo-router";
 
 export default function textValidation() {
     const [loading, setLoading] = useState(false);
-    const [accuracy, setAccuracy] = useState(0);
-    const { text, setText, setFeedback } = useContext<any>(AppContext);
+    const { setFeedback } = useContext<any>(AppContext);
+    const [text, setText] = useState<any>('');
+    const [confidence, setConfidence] = useState<any>(0);
+    const { textOcr, confidenceOcr }  = useLocalSearchParams();
     const router = useRouter();
+
+
+    useEffect(() => {
+        if (textOcr && confidenceOcr) {
+            setText(textOcr)
+            setConfidence(confidenceOcr)
+        }
+
+        console.log(textOcr)
+        console.log(confidenceOcr)
+    }, [textOcr, confidenceOcr]);
+
 
     const getBaseHeaders = () => {
         const headers = new Headers();
@@ -19,7 +33,7 @@ export default function textValidation() {
     async function handleFeedback() {
         const raw = JSON.stringify({
             "text": text,
-            "confidence": accuracy 
+            "confidence": confidence 
         });
 
         const response = await fetch("https://api-maribel-production.up.railway.app/api/v1/ocr/feedback", {
@@ -46,7 +60,7 @@ export default function textValidation() {
 
     const getColor = (index: number, totalDots: number, accuracy: number) => {
         const percentage = (index + 1) / totalDots;
-
+        
         if (percentage <= accuracy) {
             if (accuracy <= 0.5) return 'red';
             if (percentage <= 0.75) return 'yellow';
@@ -86,7 +100,7 @@ export default function textValidation() {
                         key={index}
                         style={[
                             styles.dot,
-                            { backgroundColor: getColor(index, 10, accuracy) },
+                            { backgroundColor: getColor(index, 10, confidence) },
                         ]}
                     />
                 ))}

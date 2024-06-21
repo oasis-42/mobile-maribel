@@ -34,13 +34,16 @@ export default function PhotoConfirmation() {
         const jsonResponse = await response.json();
         setText(jsonResponse.text);
         setLoading(false)
+        return jsonResponse;
     }
 
     async function handleOnPressContinuar() {
         setLoading(true);
-        await processOcr();
+        const { text, confidence } = await processOcr();
         setLoading(false);
-        router.push({ pathname: "screens/typeOfAssessment/textValidation" });
+        router.push({ pathname: "screens/typeOfAssessment/textValidation",
+                      params: {textOcr: text, confidenceOcr: confidence.toString()}
+                    });
     }
 
     function handleOnPressTentarNovamente() {
