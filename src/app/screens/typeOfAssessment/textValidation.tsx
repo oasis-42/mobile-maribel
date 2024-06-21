@@ -1,18 +1,16 @@
+import React, { useContext, useState } from "react";
+import { View, TextInput, StyleSheet } from "react-native";
+import { Button, ActivityIndicator, IconButton, Text } from "react-native-paper";
+import AppContext from "../../contexts/AppContext";
+import { useRouter } from "expo-router";
 
-import React, { View, Image, Text, TextInput, StyleSheet } from "react-native";
-import { Button, ActivityIndicator, IconButton, Card } from "react-native-paper";
-import AppContext from "../../../contexts/AppContext";
-import { useContext, useState } from "react";
-import { router } from "expo-router";
-
-export default function ConfirmandoTexto() {
+export default function textValidation() {
     const [loading, setLoading] = useState(false);
     const [accuracy, setAccuracy] = useState(0);
     const { text, setText, setFeedback } = useContext<any>(AppContext);
+    const router = useRouter();
 
-    // const textvar = "Com a R.I.P Privacidade evolução dos meios de comunicação, ninguém tem mais privacidade. Tipo é impossível \"dar perdido\" Sem que saibam onde você esteve e quando esteve. Fornecemos nossos dados a empresas poderosas sem termos noção do que será feito com isso. Hoje trocamos nossas informações em troca de entretenimento barato. Pior que isso, compartilhamos por vontade própria só para interagir com a galera, vejo isso como algo preocupante. Pois as grandes empresas do mal que Usam essas informações, nos veem como carteiras com pernas e tem poder para criar governos que as representem. Algo precisa ser feito a respeito disso. Se informação é poder, qual é o poder daqueles que tem toda a informação do mundo. É preciso que nossos melhores cientistas trabalhem nisso para pensar em soluções para nos proteger. Senão seremos escravizados por grandes corporações e terá um futuro punk.";
-
-    function getBaseHeaders() {
+    const getBaseHeaders = () => {
         const headers = new Headers();
         headers.append("Content-Type", "application/json");
         return headers;
@@ -43,7 +41,7 @@ export default function ConfirmandoTexto() {
     }
 
     function handleOnPressTentarNovamente() {
-        router.push({ pathname: "screens/camera/cameraScreen" });
+        router.push({ pathname: "screens/typeOfAssessment/cameraSelected/camera" });
     }
 
     const getColor = (index: number, totalDots: number, accuracy: number) => {
@@ -60,13 +58,6 @@ export default function ConfirmandoTexto() {
 
     return (
         <View style={styles.container}>
-            {/* <Card style={styles.card}>
-                <View style={styles.cardContent}>
-                <Text>Nível de precisão</Text>
-                <IconButton icon="information" size={20} onPress={() => {}} />
-                </View>
-            </Card> */}
-
             <View
                 style={{
                     flexDirection: "row",
@@ -75,7 +66,6 @@ export default function ConfirmandoTexto() {
                     paddingEnd: 8,
                     paddingTop: 4,
                     paddingBottom: 4,
-                    // justifyContent: "space-between",
                     justifyContent: "center",
                     gap: 8,
                     borderWidth: 1,
@@ -89,7 +79,6 @@ export default function ConfirmandoTexto() {
                 <Text style={{ fontWeight: "600", fontSize: 16, lineHeight: 24}}>Nível de precisão</Text>
                 <IconButton icon="information" size={20} onPress={() => {}} />
             </View>
-
 
             <View style={styles.progressBarContainer}>
                 {[...Array(10)].map((_, index) => (
@@ -122,7 +111,7 @@ export default function ConfirmandoTexto() {
                     {loading ? <ActivityIndicator animating={true} color="white" /> : "Usar texto"}
                 </Button>
             </View>
-        </View >
+        </View>
     );
 }
 
@@ -134,18 +123,6 @@ const styles = StyleSheet.create({
         backgroundColor: '#f8f8f8', // cor de fundo opcional
         rowGap: 4
     },
-    card: {
-        marginBottom: 10,
-        paddingTop: 4,
-        paddingBottom: 4,
-        paddingEnd: 8,
-        paddingStart: 8,
-        width: 160
-    },
-    cardContent: {
-        flexDirection: 'row',
-        alignItems: 'center',
-    },
     progressBarContainer: {
         flexDirection: 'row',
         marginBottom: 10,
@@ -153,10 +130,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         paddingStart: 15,
         paddingEnd: 15
-    },
-    progressBar: {
-        height: '100%',
-        width: '100%', // This should reflect the accuracy percentage
     },
     dot: {
         width: 31,

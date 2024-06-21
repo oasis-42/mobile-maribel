@@ -3,8 +3,8 @@ import { useContext, useRef, useState } from 'react';
 import { Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { IconButton, ActivityIndicator } from "react-native-paper";
 import * as ImagePicker from 'expo-image-picker';
-import api from '../../../sdk/api';
-import AppContext from '../../contexts/AppContext';
+import api from '../../../../sdk/api';
+import AppContext from '../../../contexts/AppContext';
 import { router } from 'expo-router';
 
 export default function Camera() {
@@ -53,7 +53,7 @@ export default function Camera() {
         setBase64Image(base64Image);
 
         setLoading(false);
-        router.push({ pathname: "screens/avaliacaoGuiada/confirmandoFoto/ConfirmandoFoto" });
+        router.push({ pathname: "screens/typeOfAssessment/cameraSelected/photoConfirmation" });
     }
 
     async function pickImage() {
@@ -68,7 +68,7 @@ export default function Camera() {
 
             if (base64Image) {
                 setBase64Image(base64Image);
-                router.push({ pathname: "screens/avaliacaoGuiada/confirmandoFoto/ConfirmandoFoto" });
+                router.push({ pathname: "screens/typeOfAssessment/cameraSelected/photoConfirmation" });
             }
         }
     }
@@ -79,7 +79,7 @@ export default function Camera() {
             <CameraView style={styles.camera} facing={orientacaoDaCamera} ref={(ref) => ref ? cameraRef.current = ref : null}>
                 <View style={styles.buttonContainer}>
                     {loading ? (
-                        <ActivityIndicator style={styles.loading} animating={true} />
+                        <ActivityIndicator color="#044884" style={styles.loading} animating={true} />
                     ) : (
                         <>
                             <TouchableOpacity style={styles.galleryButton} onPress={pickImage}>
@@ -126,6 +126,7 @@ const styles = StyleSheet.create({
     },
     loading: {
         alignSelf: 'center',
+        
     },
     galleryButton: {
         position: 'absolute',

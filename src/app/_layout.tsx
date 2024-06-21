@@ -75,10 +75,6 @@ export default function RootLayout() {
             }}
           />
           <Stack.Screen
-            name="screens/themeSelection/themeSelection"
-            options={{ title: "Oi", headerTitleAlign: "center" }}
-          />
-          <Stack.Screen
             name="screens/onboardings/evaluatedComposition"
             options={{ title: "Redação avaliada", headerTitleAlign: "center" }}
           />
@@ -87,11 +83,11 @@ export default function RootLayout() {
             options={{ title: "Redação avaliada", headerTitleAlign: "center" }}
           />
           <Stack.Screen
-            name="screens/camera/cameraScreen"
+            name="screens/typeOfAssessment/cameraSelected/camera"
             options={{ title: "Camera", headerTitleAlign: "center" }}
           />
           <Stack.Screen
-            name="screens/avaliacaoGuiada/confirmandoFoto/ConfirmandoFoto"
+            name="screens/typeOfAssessment/cameraSelected/photoConfirmation"
             options={{ title: "Confirmando Foto", headerTitleAlign: "center" }}
           />
           <Stack.Screen
@@ -112,6 +108,10 @@ export default function RootLayout() {
           />
           <Stack.Screen
             name="screens/typeOfAssessment/fileChoice"
+            options={{ title: "Criando avaliação", headerTitleAlign: "center" }}
+          />
+           <Stack.Screen
+            name="screens/typeOfAssessment/textValidation"
             options={{ title: "Criando avaliação", headerTitleAlign: "center" }}
           />
         </Stack>

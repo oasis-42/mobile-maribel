@@ -6,7 +6,7 @@ import api from "../../../../sdk/api";
 import { useContext, useState } from "react";
 import AppContext from "../../../contexts/AppContext";
 
-export default function ConfirmandoFoto() {
+export default function PhotoConfirmation() {
     const [loading, setLoading] = React.useState(false);
     const BASE_URL = "https://api-maribel-production.up.railway.app";
 
@@ -40,11 +40,11 @@ export default function ConfirmandoFoto() {
         setLoading(true);
         await processOcr();
         setLoading(false);
-        router.push({ pathname: "screens/avaliacaoGuiada/confirmandoTexto/ConfirmandoTexto" });
+        router.push({ pathname: "screens/typeOfAssessment/textValidation" });
     }
 
     function handleOnPressTentarNovamente() {
-        router.push({ pathname: "screens/camera/cameraScreen" });
+        router.push({ pathname: "/screens/typeOfAssessment/cameraSelected/camera" });
     }
 
 
