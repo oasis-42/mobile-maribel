@@ -62,9 +62,9 @@ export default function textValidation() {
         const percentage = (index + 1) / totalDots;
         
         if (percentage <= accuracy) {
-            if (accuracy <= 0.5) return 'red';
-            if (percentage <= 0.75) return 'yellow';
-            return 'green';
+            if (accuracy > 0.75) return 'green';
+            if (accuracy > 0.5) return 'yellow';
+            return 'red';
         }
 
         return '#e0e0e0';
