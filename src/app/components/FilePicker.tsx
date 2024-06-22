@@ -1,5 +1,6 @@
 
 // ARRUMAR DE ACORDO COM API PARA ARQUIVOS QUE NÃO SAO IMAGENS
+// Tratar com popup avisando o usario caso arquivo exceda tamanho aceito do arquivo
 
 import React, { useState, useContext } from 'react';
 import { View, StyleSheet, useWindowDimensions } from 'react-native';
@@ -97,10 +98,10 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-start',
     alignItems: 'center',
-    padding: 16,
+    
   },
   card: {
-    marginVertical: 20,
+    
     borderColor: '#D7D7D7', 
     borderRadius: 5,
   },

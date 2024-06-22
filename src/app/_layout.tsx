@@ -84,7 +84,7 @@ export default function RootLayout() {
           />
           <Stack.Screen
             name="screens/typeOfAssessment/cameraSelected/camera"
-            options={{ title: "Camera", headerTitleAlign: "center" }}
+            options={{ title: "Tirando foto", headerTitleAlign: "center" }}
           />
           <Stack.Screen
             name="screens/typeOfAssessment/cameraSelected/photoConfirmation"

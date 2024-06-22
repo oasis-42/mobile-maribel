@@ -61,7 +61,7 @@ export default function PhotoConfirmation() {
                 />
                 {/* )} */}
             </View>
-            <View style={styles.buttonContainer}>
+            <View style={styles.footer}>
                 <Button style={styles.btn_again} onPress={handleOnPressTentarNovamente} disabled={loading} textColor='#044884'>
                     Tirar outra foto
                 </Button>
@@ -77,7 +77,7 @@ export default function PhotoConfirmation() {
 const styles = StyleSheet.create({
     mainContainer: {
         flex: 1,
-        backgroundColor: '#000', // optional, makes background black
+        backgroundColor: '#000', 
     },
     imageContainer: {
         flex: 1,
@@ -88,13 +88,18 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
     },
-    buttonContainer: {
+    footer: {
         flexDirection: 'row',
-        padding: 10,
         gap: 8,
         justifyContent: 'space-around',
-        backgroundColor: '#fff', // optional, makes background white
-    },
+        position: 'absolute',
+        bottom: 0,
+        width: '100%',
+        padding: 16,
+        backgroundColor: '#fff',
+        borderTopWidth: 1,
+        borderTopColor: '#D7D7D7',
+        },
     btn_again: {
         backgroundColor: "#FFFFFF",
         width: "auto",
@@ -103,9 +108,11 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         padding: 8,
-        borderRadius: 7,
+        borderRadius: 5,
         borderColor: "#044884",
         borderWidth: 1,
+        marginBottom: 8, 
+        marginTop: 8,
     },
     btn_next: {
         backgroundColor: "#044884",
@@ -115,6 +122,8 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         padding: 8,
-        borderRadius: 7,
+        borderRadius: 5,
+        marginBottom: 8, 
+        marginTop: 8,
     },
 });

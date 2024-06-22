@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-start',
     alignItems: 'center',
-    padding: 16,
+    paddingBottom: 16,
   },
   card: {
     borderColor: '#D7D7D7', 
