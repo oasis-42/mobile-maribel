@@ -28,7 +28,7 @@ export default function App() {
             mode="outlined" 
             style={{ borderColor: "#D7D7D7"}}
             labelStyle={{ color: "#2E3E4B" }}
-            onPress={() => router.push('/screens/camera/cameraScreen')}
+            onPress={() => router.push('/screens/typeOfAssessment/cameraSelected/camera')}
           >
             Outras opções 
           </DefaultButton>

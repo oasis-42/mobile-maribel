@@ -48,6 +48,7 @@ export default function textValidation() {
     }
 
     async function handleOnPressUsarTexto() {
+        console.log("Valor de accuracy:", accuracy); // Adicionando console.log para verificar o valor de accuracy
         setLoading(true);
         await handleFeedback();
         setLoading(false);
@@ -55,7 +56,7 @@ export default function textValidation() {
     }
 
     function handleOnPressTentarNovamente() {
-        router.push({ pathname: "screens/typeOfAssessment/cameraSelected/camera" });
+        router.push({ pathname: "/screens/typeOfAssessment/cameraSelected/camera" });
     }
 
     const getColor = (index: number, totalDots: number, accuracy: number) => {

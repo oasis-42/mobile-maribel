@@ -73,33 +73,30 @@ export default function Camera() {
         }
     }
 
-
     return (
         <View style={styles.container}>
             <CameraView style={styles.camera} facing={orientacaoDaCamera} ref={(ref) => ref ? cameraRef.current = ref : null}>
                 <View style={styles.buttonContainer}>
-                    {loading ? (
-                        <ActivityIndicator color="#044884" style={styles.loading} animating={true} />
-                    ) : (
-                        <>
-                            <TouchableOpacity style={styles.galleryButton} onPress={pickImage}>
-                                <IconButton
-                                    icon="image"
-                                    iconColor='#fff'
-                                    size={28}
-                                    containerColor='#808080'
-                                />
-                            </TouchableOpacity>
-                            <TouchableOpacity style={styles.cameraButton} onPress={takePicture}>
-                                <IconButton
-                                    icon="camera"
-                                    iconColor='#fff'
-                                    size={38}
-                                    containerColor='#044884'
-                                />
-                            </TouchableOpacity>
-                        </>
-                    )}
+                    <TouchableOpacity style={[styles.button, styles.galleryButton]} onPress={pickImage}>
+                        <IconButton
+                            icon="image"
+                            iconColor='#fff'
+                            size={28}
+                            containerColor='#808080'
+                        />
+                    </TouchableOpacity>
+                    <TouchableOpacity style={[styles.button, styles.cameraButton]} onPress={takePicture}>
+                        {loading ? (
+                            <ActivityIndicator color="#fff" style={styles.indicator} animating={true} />
+                        ) : (
+                            <IconButton
+                                icon="camera"
+                                iconColor='#fff'
+                                size={34}
+                                containerColor='#044884'
+                            />
+                        )}
+                    </TouchableOpacity>
                 </View>
             </CameraView>
         </View>
@@ -126,17 +123,26 @@ const styles = StyleSheet.create({
     },
     loading: {
         alignSelf: 'center',
-        
+    },
+    button: {
+        borderRadius: 50,
     },
     galleryButton: {
         position: 'absolute',
-        left: 50,
-        // bottom: 30,
-        alignSelf: 'center',
-        alignItems: 'center',
+        left: 40,
+        backgroundColor: '#808080',
+        
     },
     cameraButton: {
+        backgroundColor: '#044884',
         alignSelf: 'center',
+        width: 70,
+        height: 70,
+        justifyContent: 'center',
         alignItems: 'center',
+    },
+    indicator: {
+        width: 34,
+        height: 34,
     },
 });
