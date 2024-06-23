@@ -33,7 +33,7 @@ export default function TextValidation() {
     async function handleFeedback() {
         const raw = JSON.stringify({
             "text": text,
-            "confidence": confidence
+            "theme_id": 1
         });
 
         const response = await fetch("https://api-maribel-production.up.railway.app/api/feedbacks", {
