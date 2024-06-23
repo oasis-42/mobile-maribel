@@ -91,10 +91,6 @@ export default function RootLayout() {
             options={{ title: "Confirmando Foto", headerTitleAlign: "center" }}
           />
           <Stack.Screen
-            name="screens/avaliacaoGuiada/confirmandoTexto/ConfirmandoTexto"
-            options={{ title: "Confirmando Texto", headerTitleAlign: "center" }}
-          />
-          <Stack.Screen
             name="screens/home/settings"
             options={{ title: "Configurações", headerTitleAlign: "center" }}
           />

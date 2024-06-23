@@ -4,47 +4,75 @@ import { ScrollView, View, StyleSheet } from "react-native";
 import DefaultButton from "../../components/DefaultButton";
 import ThemeSelectionCard from "../../components/ThemeSelectionCard";
 import { useRouter } from 'expo-router';
-import { fetchMockedData, sendMockedYear, ThemeData } from '../../../mocks/apiThemeSelection';
+
+const API_URL = 'https://www.maribel.cloud/api/themes';
+const AUTH_TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE5MTk2NjEyLCJpYXQiOjE3MTkxMTAyMTIsImp0aSI6ImYwYTAwZWQ3ODJlMzQ2ZTQ4MTkxMmNiMDhkZjAyNmUxIiwidXNlcl9pZCI6M30.AScWS68f8x3zpYtaOwAl6S032vYucMN5lGIQDdV6Qd4'; 
+
+type ThemeData = {
+  theme: number;
+  title: string;
+  year: number;
+};
+
+async function fetchData() {
+  try {
+    const response = await fetch(API_URL, {
+      headers: {
+        'Authorization': `Bearer ${AUTH_TOKEN}`,
+        'Content-Type': 'application/json'
+      }
+    });
+    const data = await response.json();
+    if (response.ok) {
+      return {
+        success: true,
+        data: data.results
+      };
+    } else {
+      console.error('Erro ao buscar dados:', data);
+      return {
+        success: false,
+        data: []
+      };
+    }
+  } catch (error) {
+    console.error('Erro ao buscar dados:', error);
+    return {
+      success: false,
+      data: []
+    };
+  }
+}
 
 export default function ThemeSelection() {
   const router = useRouter();
-  const [selectedYear, setSelectedYear] = useState<string | null>(null);
+  const [selectedTheme, setSelectedTheme] = useState<number | null>(null);
   const [themes, setThemes] = useState<ThemeData[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    const loadMockedData = async () => {
+    const loadRealData = async () => {
       setIsLoading(true);
-      const response = await fetchMockedData();
+      const response = await fetchData();
       if (response.success) {
         setThemes(response.data);
       }
       setIsLoading(false);
     };
 
-    loadMockedData();
+    loadRealData();
   }, []);
 
-  const handleCardPress = (year: string) => {
-    setSelectedYear(year);
+  const handleCardPress = (theme: number) => {
+    setSelectedTheme(theme);
   };
 
   const handleContinuePress = async () => {
-    if (selectedYear) {
-      try {
-        const response = await sendMockedYear(selectedYear);
-        if (response.success) {
-          console.log('Success:', response);
-          router.push({
-            pathname: '/screens/typeOfAssessment/motivationalTexts',
-            params: { year: selectedYear },
-          });
-        } else {
-          console.error('Error: Failed to send year');
-        }
-      } catch (error) {
-        console.error('Error:', error);
-      }
+    if (selectedTheme !== null) {
+      router.push({
+        pathname: '/screens/typeOfAssessment/motivationalTexts',
+        params: { theme_id: selectedTheme },
+      });
     } else {
       alert('Por favor, selecione um tema.');
     }
@@ -52,15 +80,15 @@ export default function ThemeSelection() {
 
   const renderThemeCards = () => {
     return themes
-      .sort((a, b) => parseInt(b.year) - parseInt(a.year))
-      .map(({ year, theme }) => (
+      .sort((a, b) => b.year - a.year)
+      .map(({ theme, year, title }) => (
         <ThemeSelectionCard
-          key={year}
-          year={year}
-          isSelected={selectedYear === year}
-          onPress={() => handleCardPress(year)}
+          key={theme}
+          year={year.toString()} // Convertendo year para string
+          isSelected={selectedTheme === theme} 
+          onPress={() => handleCardPress(theme)}
         >
-          {theme}
+          {title}
         </ThemeSelectionCard>
       ));
   };
@@ -87,8 +115,8 @@ export default function ThemeSelection() {
                 mode="contained"
                 onPress={handleContinuePress}
                 style={styles.continueButton}
-                disabled={!selectedYear}
-                labelStyle={!selectedYear ? { color: "#fff" } : undefined}
+                disabled={selectedTheme === null}
+                labelStyle={selectedTheme === null ? { color: "#fff" } : undefined}
               >
                 Continuar
               </DefaultButton>
@@ -134,7 +162,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 0,
     width: '100%',
-    padding: 16,
+    padding: 14,
     backgroundColor: '#fff',
     borderTopWidth: 1,
     borderTopColor: '#D7D7D7',

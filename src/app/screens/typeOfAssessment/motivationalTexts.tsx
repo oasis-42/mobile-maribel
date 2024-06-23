@@ -1,32 +1,70 @@
 import React, { useState, useEffect } from 'react';
 import { PaperProvider, Text, ActivityIndicator } from "react-native-paper";
-import { ScrollView, View, StyleSheet, Image } from "react-native";
+import { ScrollView, View, StyleSheet } from "react-native";
 import { useLocalSearchParams } from 'expo-router';
-import { fetchMotivationalTexts } from '../../../mocks/apiMotivationalTexts';
-import DefaultButton from "../../components/DefaultButton";
 import { useRouter } from 'expo-router';
+import DefaultButton from "../../components/DefaultButton";
 
+const API_URL = 'https://www.maribel.cloud/api/motivational-texts/theme';
+const AUTH_TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE5MTk2NjEyLCJpYXQiOjE3MTkxMTAyMTIsImp0aSI6ImYwYTAwZWQ3ODJlMzQ2ZTQ4MTkxMmNiMDhkZjAyNmUxIiwidXNlcl9pZCI6M30.AScWS68f8x3zpYtaOwAl6S032vYucMN5lGIQDdV6Qd4';
 
+type MotivationalTextData = {
+  motivational_text_id: number;
+  theme_id: number;
+  title: string;
+  text: string;
+};
+
+async function fetchMotivationalTexts(theme_id: number) {
+  try {
+    const response = await fetch(`${API_URL}/${theme_id}/`, {
+      headers: {
+        'Authorization': `Bearer ${AUTH_TOKEN}`,
+        'Content-Type': 'application/json'
+      }
+    });
+
+    const data = await response.json();
+    if (response.ok) {
+      return {
+        success: true,
+        data: data.results
+      };
+    } else {
+      console.error('Erro ao buscar dados:', data);
+      return {
+        success: false,
+        data: []
+      };
+    }
+  } catch (error) {
+    console.error('Erro ao buscar dados:', error);
+    return {
+      success: false,
+      data: []
+    };
+  }
+}
 
 export default function MotivationalTexts() {
   const router = useRouter();
-  const { year } = useLocalSearchParams();
-  const [motivationalTexts, setMotivationalTexts] = useState<{ text?: string; image?: any }[]>([]);
+  const { theme_id } = useLocalSearchParams();
+  const [motivationalTexts, setMotivationalTexts] = useState<MotivationalTextData[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const loadMotivationalTexts = async () => {
-      if (year) {
-        const response = await fetchMotivationalTexts(year as string);
+      if (theme_id) {
+        const response = await fetchMotivationalTexts(Number(theme_id));
         if (response.success && response.data) {
-          setMotivationalTexts(response.data.texts);
+          setMotivationalTexts(response.data);
         }
         setIsLoading(false);
       }
     };
 
     loadMotivationalTexts();
-  }, [year]);
+  }, [theme_id]);
 
   return (
     <PaperProvider>
@@ -47,26 +85,21 @@ export default function MotivationalTexts() {
               <View style={styles.cardsContainer}>
                 {motivationalTexts.map((item, index) => (
                   <View key={index} style={styles.card}>
-                    {item.image && (
-                      <View style={styles.imageContainer}>
-                        <Image source={item.image} style={styles.image} resizeMode="contain" />
-                      </View>
-                    )}
-                    {item.text && <Text style={styles.cardText}>{item.text}</Text>}
+                    <Text style={styles.cardTitle}>{item.title}</Text>
+                    <Text style={styles.cardText}>{item.text}</Text>
                   </View>
                 ))}
               </View>
             </ScrollView>
             <View style={styles.footer}>
-            <DefaultButton 
-              mode="contained"
-              onPress={() => router.push('/screens/typeOfAssessment/fileChoice')}
-            >
-              Continuar
-            </DefaultButton>
-          </View>
-        </>
-          
+              <DefaultButton 
+                mode="contained"
+                onPress={() => router.push('/screens/typeOfAssessment/fileChoice')}
+              >
+                Continuar
+              </DefaultButton>
+            </View>
+          </>
         )}
       </View>
     </PaperProvider>
@@ -108,6 +141,7 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     width: "100%",
     paddingBottom: 80, 
+    marginBottom: 8
   },
   card: {
     width: '90%',
@@ -118,18 +152,15 @@ const styles = StyleSheet.create({
     borderColor: '#D7D7D7',
     borderWidth: 1,
   },
-  imageContainer: {
-    width: '100%',
-    height: 200, 
+  cardTitle: {
+    fontWeight: "700",
+    fontSize: 16,
+    color: "#2E3E4B",
     marginBottom: 8,
-  },
-  image: {
-    width: '100%',
-    height: '100%',
-    borderRadius: 5,
   },
   cardText: {
     color: "#2E3E4B",
+  
   },
   loadingIndicator: {
     flex: 1,

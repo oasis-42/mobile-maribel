@@ -9,12 +9,15 @@ import AppContext from "../../../contexts/AppContext";
 export default function PhotoConfirmation() {
     const [loading, setLoading] = React.useState(false);
     const BASE_URL = "https://api-maribel-production.up.railway.app";
+    const AUTH_TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE5MTk2NjEyLCJpYXQiOjE3MTkxMTAyMTIsImp0aSI6ImYwYTAwZWQ3ODJlMzQ2ZTQ4MTkxMmNiMDhkZjAyNmUxIiwidXNlcl9pZCI6M30.AScWS68f8x3zpYtaOwAl6S032vYucMN5lGIQDdV6Qd4';
+
 
     const { base64Image, setText } = useContext<any>(AppContext);
 
     function getBaseHeaders() {
         const headers = new Headers();
         headers.append("Content-Type", "application/json");
+        headers.append("Authorization", `Bearer ${AUTH_TOKEN}`);
         return headers;
     }
 
@@ -24,7 +27,7 @@ export default function PhotoConfirmation() {
             "base64": base64Image
         })
 
-        const response = await fetch(`${BASE_URL}/api/v1/ocr/base64`, {
+        const response = await fetch(`${BASE_URL}/api/ocr/base64`, {
             method: "POST",
             headers: getBaseHeaders(),
             body: jsonBody,

@@ -1,181 +1,92 @@
-// import React, { useContext, useEffect, useState } from "react";
-// import { View, Pressable, Text, ScrollView } from "react-native";
-// import { Link } from "expo-router";
-// import { z } from "zod";
-// import AppContext from "../../contexts/AppContext";
-
-// const baseUrl = "https://api-maribel-production.up.railway.app";
-
-// const CompetenciaSchema = z.object({
-//   nota: z.number(),
-//   parecer: z.string(),
-//   acertos: z.object({
-//     trecho: z.string(),
-//     "por que se aplicam": z.string()
-//   }),
-//   erros: z.object({
-//     trecho: z.string(),
-//     "por que se aplicam": z.string()
-//   }),
-//   "sugestões": z.object({
-//       "trecho": z.string(),
-//       "reescrita": z.string()
-//   })
-// });
-
-// const FeedbackSchema = z.object({
-//   "competência 1": CompetenciaSchema,
-//   "competência 2": CompetenciaSchema,
-//   "competência 3": CompetenciaSchema,
-//   "competência 4": CompetenciaSchema,
-//   "competência 5": CompetenciaSchema,
-// });
-
-// type Feedback = z.infer<typeof FeedbackSchema>;
-
-// function FeedBackScreen() {
-//   const { feedback } = useContext<any>(AppContext);
-
-//   return (
-//     <ScrollView>
-//       <View
-//         style={{
-//           gap: 8,
-//           paddingVertical: 15,
-//           display: "flex",
-//           flexDirection: "column",
-//           alignItems: "center",
-//         }}
-//       >
-//         <FeedbackCard item={feedback.avaliacao_redacao?.["competência 1"]}/>
-//         <FeedbackCard item={feedback.avaliacao_redacao?.["competência 2"]}/>
-//         <FeedbackCard item={feedback.avaliacao_redacao?.["competência 3"]}/>
-//         <FeedbackCard item={feedback.avaliacao_redacao?.["competência 4"]}/>
-//         <FeedbackCard item={feedback.avaliacao_redacao?.["competência 5"]}/> 
-//       </View>
-//     </ScrollView>
-//   );
-// };
-
-// function FeedbackCard({ item }: { item: any }) {
-//   return <View
-//     style={{
-//       borderColor: "black",
-//       borderWidth: 0.4,
-//       borderRadius: 12,
-//       backgroundColor: "white",
-//       display: "flex",
-//       flexDirection: "column",
-//       width: 382,
-//       height: 320,
-//     }}
-//     key={item.key}>
-//     <View
-//       style={{
-//         display: "flex",
-//       }}>
-//       <View
-//         style={{
-//           display: "flex",
-//           flexDirection: "column",
-//           width: 382,
-//         }}
-//       >
-//         <View
-//           style={{
-//             display: "flex",
-//             flexDirection: "row",
-//             justifyContent: "space-between",
-//             padding: 8,
-//           }}>
-//           <View>
-
-//             <View
-//               style={{
-//                 display: "flex",
-//                 flexDirection: "row",
-//                 justifyContent: "space-between",
-//                 padding: 4,
-//               }}>
-//               <Text>Competência {item.competencia}   </Text>
-//               <Text>Nota: {item.nota}</Text>
-//             </View>
-//             <Text>{item.description}</Text>
-//             <Text style={{ marginTop: 16, fontSize: 16 }}>Parecer</Text>
-//             <Text style={{
-//               height: 320
-//             }}>{item.parecer}</Text>
-
-//             <Text>Acertos: {item.acertos.trecho}</Text>
-
-//             <Text>Erros: {item.erros.trecho}</Text>
-//           </View>
-//         </View>
-//       </View>
-//     </View>
-//   </View>;
-// }
-
-// export default FeedBackScreen;
-
-
 import * as React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, FlatList } from 'react-native';
-import { Card, Title, Paragraph, IconButton } from 'react-native-paper';
-import FeedBackCard from '../feedbackscreen/feedBackCard'
+import { View, Text, StyleSheet, FlatList } from 'react-native';
+import { useLocalSearchParams } from 'expo-router';
 
-interface Competency {
-  id: string;
-  title: string;
-  score: number;
-  excerpt: string;
-  feedback: string;
-  hits: string;
-  errors: string;
-}
-
-const competencies: Competency[] = [
-  {
-    id: '1',
-    title: 'Competência 1',
-    score: 80,
-    excerpt: 'Este é um trecho de exemplo para a competência 1.',
-    feedback: 'Feedback relacionado ao texto da competência 1.',
-    hits: 'Acertos para a competência 1.',
-    errors: 'Erros para a competência 1.',
-  },
-  // Adicione mais competências aqui...
-];
+const FeedBackCard = ({ competency }: { competency: any }) => (
+    <View style={styles.card}>
+        <View style={styles.header}>
+            <Text style={styles.title}>{competency.analyzedSkill}</Text>
+            <Text style={styles.score}>Nota: {competency.grade}</Text>
+        </View>
+        <Text>{competency.feedback}</Text>
+        <Text style={styles.sectionTitle}>Acertos:</Text>
+        {competency.successes.map((success: any, index: number) => (
+            <View key={index} style={styles.detail}>
+                <Text style={styles.excerpt}>{success.excerpt}</Text>
+                <Text>{success.reason}</Text>
+            </View>
+        ))}
+        <Text style={styles.sectionTitle}>Erros:</Text>
+        {competency.errors.map((error: any, index: number) => (
+            <View key={index} style={styles.detail}>
+                <Text style={styles.excerpt}>{error.excerpt}</Text>
+                <Text>{error.reason}</Text>
+                <Text>Como corrigir: {error.howToCorrect}</Text>
+            </View>
+        ))}
+    </View>
+);
 
 const FeedBackScreen: React.FC = () => {
-  return (
-    <View style={styles.container}>
-      <FlatList
-        data={competencies}
-        renderItem={({ item }) => <FeedBackCard competency={item} />}
-        keyExtractor={(item) => item.id}
-      />
-    </View>
-  );
-}
+    const { feedbackData } = useLocalSearchParams();
+    
+    // Verifica se feedbackData é um array, caso seja, pega o primeiro elemento
+    const feedbackString = Array.isArray(feedbackData) ? feedbackData[0] : feedbackData;
+    
+    // Converte feedbackString para JSON, caso não seja undefined
+    const feedback = feedbackString ? JSON.parse(feedbackString) : [];
+    
+    console.log("Dados de feedback:", feedback); // Adiciona um log para verificar os dados de feedback
+
+    return (
+        <View style={styles.container}>
+            <FlatList
+                data={feedback.essayAnalysis}
+                renderItem={({ item }) => <FeedBackCard competency={item} />}
+                keyExtractor={(item, index) => index.toString()}
+            />
+        </View>
+    );
+};
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 15,
-    backgroundColor: '#f5f5f5',
-  },
-  card: {
-    marginBottom: 4,
-  },
-  header: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  expandedContent: {
-    marginTop: 4,
-  },
+    container: {
+        flex: 1,
+        padding: 15,
+        backgroundColor: '#f5f5f5',
+    },
+    card: {
+        borderColor: "black",
+        borderWidth: 1,
+        borderRadius: 12,
+        backgroundColor: "white",
+        padding: 10,
+        marginBottom: 10,
+    },
+    header: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginBottom: 10,
+    },
+    title: {
+        fontSize: 16,
+        fontWeight: 'bold',
+    },
+    score: {
+        fontSize: 16,
+    },
+    sectionTitle: {
+        fontSize: 14,
+        fontWeight: 'bold',
+        marginTop: 10,
+    },
+    detail: {
+        marginTop: 5,
+    },
+    excerpt: {
+        fontStyle: 'italic',
+    },
 });
 
 export default FeedBackScreen;
