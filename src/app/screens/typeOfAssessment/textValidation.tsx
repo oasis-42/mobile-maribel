@@ -1,10 +1,14 @@
 import React, { useContext, useState, useEffect } from "react";
-import { View, TextInput, StyleSheet } from "react-native";
-import { Button, ActivityIndicator, IconButton, Text } from "react-native-paper";
+import { View, TextInput, StyleSheet, Dimensions } from "react-native";
+import { Modal, Portal, Text, IconButton, Button, ActivityIndicator } from 'react-native-paper';
 import AppContext from "../../contexts/AppContext";
 import { useRouter, useLocalSearchParams } from "expo-router";
 
+const { width } = Dimensions.get("window");
+
 export default function TextValidation() {
+    const [visible, setVisible] = useState(false);
+    const [modalText, setModalText] = useState("");
     const [loading, setLoading] = useState(false);
     const { setFeedback } = useContext<any>(AppContext);
     const [text, setText] = useState<any>('');
@@ -12,6 +16,12 @@ export default function TextValidation() {
     const { textOcr, confidenceOcr } = useLocalSearchParams();
     const router = useRouter();
     const AUTH_TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE5MTk2NjEyLCJpYXQiOjE3MTkxMTAyMTIsImp0aSI6ImYwYTAwZWQ3ODJlMzQ2ZTQ4MTkxMmNiMDhkZjAyNmUxIiwidXNlcl9pZCI6M30.AScWS68f8x3zpYtaOwAl6S032vYucMN5lGIQDdV6Qd4';
+
+    const showModal = () => {
+        setVisible(true);
+    };
+
+    const hideModal = () => setVisible(false);
 
     useEffect(() => {
         if (textOcr && confidenceOcr) {
@@ -44,7 +54,7 @@ export default function TextValidation() {
         });
 
         const jsonResponse = await response.json();
-        console.log("Feedback recebido:", jsonResponse); // Adiciona um log para verificar o feedback recebido
+        console.log("Feedback recebido:", jsonResponse);
         setFeedback(jsonResponse);
         return jsonResponse;
     }
@@ -73,29 +83,30 @@ export default function TextValidation() {
         return '#e0e0e0';
     };
 
+    const getAccuracyMessage = (accuracy: number) => {
+        if (accuracy > 0.75) return 'ótimo';
+        if (accuracy > 0.5) return 'médio';
+        return 'ruim';
+    };
+
+    const getModalMessage = (accuracy: number) => {
+        if (accuracy > 0.75) return 'O nível de qualidade do seu texto fornece uma precisão ótima para a avaliação';
+        if (accuracy > 0.5) return 'O nível de qualidade do seu texto fornece uma precisão mínima para a avaliação';
+        return 'O nível de qualidade do seu texto não fornece uma precisão mínima para a avaliação, recomendamos que tente novamente';
+    };
+
     return (
         <View style={styles.container}>
-            <View
-                style={{
-                    flexDirection: "row",
-                    alignItems: "center",
-                    paddingStart: 8,
-                    paddingEnd: 8,
-                    paddingTop: 4,
-                    paddingBottom: 4,
-                    justifyContent: "center",
-                    gap: 8,
-                    borderWidth: 1,
-                    borderRadius: 5,
-                    borderColor: "#D7D7D7",
-                    backgroundColor: "white",
-                    width: 180,
-                    height: 40
-                }}
-            >
-                <Text style={{ fontWeight: "600", fontSize: 16, lineHeight: 24, paddingLeft: 16 }}>Nível de precisão</Text>
-                <IconButton icon="information" size={20} onPress={() => {}} />
+            <View style={styles.precisionLevelContainer}>
+                <Text style={styles.precisionLevelText}>Nível de precisão</Text>
+                <IconButton icon="information" size={20} onPress={showModal} />
             </View>
+            <Portal>
+                <Modal visible={visible} onDismiss={hideModal} contentContainerStyle={styles.modalContainer}>
+                    <Text variant="titleMedium">Nível de precisão {getAccuracyMessage(confidence)}</Text>
+                    <Text>{getModalMessage(confidence)}</Text>
+                </Modal>
+            </Portal>
 
             <View style={styles.progressBarContainer}>
                 {[...Array(10)].map((_, index) => (
@@ -113,18 +124,31 @@ export default function TextValidation() {
                 editable={!loading}
                 multiline
                 numberOfLines={30}
-                maxLength={2000}
+                maxLength={2100}
                 value={text}
                 onChangeText={(t) => setText(t)}
                 style={styles.textInput}
             />
 
             <View style={styles.buttonContainer}>
-                <Button style={styles.btn_again} onPress={handleOnPressTentarNovamente} disabled={loading} textColor='#044884'>
+                <Button
+                    mode="outlined"
+                    onPress={handleOnPressTentarNovamente}
+                    disabled={loading}
+                    textColor='#044884'
+                    style={styles.btn_again}
+                    contentStyle={styles.buttonContent}
+                >
                     Tentar novamente
                 </Button>
 
-                <Button style={styles.btn_next} onPress={handleOnPressUsarTexto} textColor='#fff'>
+                <Button
+                    mode="contained"
+                    onPress={handleOnPressUsarTexto}
+                    textColor='#fff'
+                    style={styles.btn_next}
+                    contentStyle={styles.buttonContent}
+                >
                     {loading ? <ActivityIndicator animating={true} color="white" /> : "Usar texto"}
                 </Button>
             </View>
@@ -139,59 +163,85 @@ const styles = StyleSheet.create({
         padding: 20,
         backgroundColor: "#F3F3F3",
         rowGap: 4,
-        
+    },
+    precisionLevelContainer: {
+        flexDirection: "row",
+        alignItems: "center",
+        paddingStart: 16,
+        paddingEnd: 16,
+        paddingTop: 4,
+        paddingBottom: 4,
+        justifyContent: "center",
+        gap: 8,
+        borderWidth: 1,
+        borderRadius: 5,
+        borderColor: "#D7D7D7",
+        backgroundColor: "white",
+        width: 200,
+        height: 40,
+        marginBottom: 8,
+    },
+    precisionLevelText: {
+        fontWeight: "600",
+        fontSize: 16,
+        lineHeight: 24,
+        paddingLeft: 16,
     },
     progressBarContainer: {
         flexDirection: 'row',
-        marginBottom: 10,
+        marginBottom: 16,
         columnGap: 1,
         justifyContent: 'center',
-        paddingStart: 15,
-        paddingEnd: 15
+        paddingStart: 16,
+        paddingEnd: 16,
     },
     dot: {
-        width: 31,
+        width: 30,
         height: 8,
         borderRadius: 5,
         marginHorizontal: 2,
     },
     textInput: {
         flex: 1,
-        padding: 10,
-        backgroundColor: 'white',
+        padding: 16,
+        backgroundColor: '#fff',
         borderRadius: 5,
-        borderColor: "black",
+        borderColor: "#D7D7D7",
         borderWidth: 1,
         textAlignVertical: 'top',
         fontSize: 16,
-        
     },
     buttonContainer: {
         flexDirection: 'row',
-        padding: 10,
         gap: 8,
-        justifyContent: 'space-between',
+        justifyContent: 'space-around',
+        bottom: 0,
+        width: '100%',
     },
     btn_again: {
-        backgroundColor: "#FFFFFF",
-        width: "auto",
-        height: 56,
         flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-        padding: 8,
-        borderRadius: 7,
-        borderColor: "#044884",
-        borderWidth: 1,
+        marginBottom: 8,
+        marginTop: 8,
+        borderRadius: 5,
+        borderColor: "#044884", 
     },
     btn_next: {
-        backgroundColor: "#044884",
-        width: "auto",
-        height: 56,
         flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-        padding: 8,
-        borderRadius: 7,
+        marginBottom: 8,
+        marginTop: 8,
+        borderRadius: 5,
+        backgroundColor: "#044884"
+    },
+    buttonContent: {
+        height: 56,
+        justifyContent: 'center',
+    },
+    modalContainer: {
+        backgroundColor: 'white',
+        padding: 20,
+        width: 250,
+        borderRadius: 5,
+        alignSelf: 'center', // Centraliza horizontalmente
+        justifyContent: 'center', // Centraliza verticalmente
     },
 });
