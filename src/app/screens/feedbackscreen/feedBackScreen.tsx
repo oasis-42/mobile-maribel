@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, Text, StyleSheet, FlatList } from 'react-native';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { useLocalSearchParams } from 'expo-router';
 
 const FeedBackCard = ({ competency }: { competency: any }) => (
@@ -10,20 +10,29 @@ const FeedBackCard = ({ competency }: { competency: any }) => (
         </View>
         <Text>{competency.feedback}</Text>
         <Text style={styles.sectionTitle}>Acertos:</Text>
-        {competency.successes.map((success: any, index: number) => (
-            <View key={index} style={styles.detail}>
-                <Text style={styles.excerpt}>{success.excerpt}</Text>
-                <Text>{success.reason}</Text>
-            </View>
-        ))}
+        {competency.successes.length > 0 ? (
+            competency.successes.map((success: any, index: number) => (
+                <View key={index} style={styles.detail}>
+                    <Text style={styles.excerpt}>{success.excerpt}</Text>
+                    <Text>{success.reason}</Text>
+                </View>
+            ))
+        ) : (
+            <Text>Não há acertos.</Text>
+        )}
         <Text style={styles.sectionTitle}>Erros:</Text>
-        {competency.errors.map((error: any, index: number) => (
-            <View key={index} style={styles.detail}>
-                <Text style={styles.excerpt}>{error.excerpt}</Text>
-                <Text>{error.reason}</Text>
-                <Text>Como corrigir: {error.howToCorrect}</Text>
-            </View>
-        ))}
+        {competency.errors.length > 0 ? (
+            competency.errors.map((error: any, index: number) => (
+                <View key={index} style={styles.detail}>
+                    <Text style={styles.excerpt}>{error.excerpt}</Text>
+                    <Text>{error.reason}</Text>
+                    <Text style={styles.sectionTitle}>Como corrigir:</Text>
+                    <Text>{error.howToCorrect}</Text>
+                </View>
+            ))
+        ) : (
+            <Text>Não há erros.</Text>
+        )}
     </View>
 );
 
@@ -39,13 +48,15 @@ const FeedBackScreen: React.FC = () => {
     console.log("Dados de feedback:", feedback); // Adiciona um log para verificar os dados de feedback
 
     return (
-        <View style={styles.container}>
-            <FlatList
-                data={feedback.essayAnalysis}
-                renderItem={({ item }) => <FeedBackCard competency={item} />}
-                keyExtractor={(item, index) => index.toString()}
-            />
-        </View>
+        <ScrollView style={styles.container}>
+            {feedback.essayAnalysis && feedback.essayAnalysis.length > 0 ? (
+                feedback.essayAnalysis.map((item: any, index: number) => (
+                    <FeedBackCard key={index} competency={item} />
+                ))
+            ) : (
+                <Text>Não há feedback disponível.</Text>
+            )}
+        </ScrollView>
     );
 };
 
@@ -56,9 +67,9 @@ const styles = StyleSheet.create({
         backgroundColor: '#f5f5f5',
     },
     card: {
-        borderColor: "black",
+        borderColor: "#D7D7D7",
         borderWidth: 1,
-        borderRadius: 12,
+        borderRadius: 5,
         backgroundColor: "white",
         padding: 10,
         marginBottom: 10,
