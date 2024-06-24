@@ -1,42 +1,44 @@
-import { useQuery } from "@tanstack/react-query";
-import { z } from "zod";
+import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const BASE_URL = "https://api-maribel-production.up.railway.app";
-
-const processOcrSchema = z.object({
-    text: z.string(),
-    confidence: z.number()
+const apiClient = axios.create({
+  baseURL: 'https://api.maribel.cloud',
+  headers: {
+    'Content-Type': 'application/json',
+  },
 });
 
-function getBaseHeaders() {
-    const headers = new Headers();
-    headers.append("Content-Type", "application/json");
-    return headers;
-}
+apiClient.interceptors.request.use(async (config) => {
+  const authData = await AsyncStorage.getItem('auth');
 
-function processOcr(imageBase64: string) {
-    return useQuery({ queryKey: ["processOcr"], queryFn: async () => {
-        try {
-            const jsonBody = JSON.stringify({
-                "base64": imageBase64
-            })
+  console.log("AUTH_DATA", authData);
 
-            const response = await fetch(`${BASE_URL}/api/v1/ocr/base64`, {
-                method: "POST",
-                headers: getBaseHeaders(),
-                body: jsonBody,
-                redirect: "follow"
-            });
+  if (authData) {
+    const auth = JSON.parse(authData);
+    const updatedAt = new Date(auth.updatedAt);
+    const now = new Date();
 
-            const jsonResponse = await response.json();
+    if ((now.getTime() - updatedAt.getTime()) / 1000 > 300) {
+      const response = await axios.post('https://api.maribel.cloud/api/auth/jwt/refresh/', {
+        refresh: auth.refreshToken,
+      });
 
-            return processOcrSchema.parse(jsonResponse);
-        } catch(err: any) {
-            throw new Error();
-        }
-    }});
-}
+      const { access: newAccessToken, refresh: newRefreshToken } = response.data;
 
-export default Object.freeze({ 
-    processOcr 
+      await AsyncStorage.setItem('auth', JSON.stringify({
+        accessToken: newAccessToken,
+        refreshToken: newRefreshToken,
+        updatedAt: new Date(),
+      }));
+
+      config.headers.Authorization = `Bearer ${newAccessToken}`;
+    } else {
+      config.headers.Authorization = `Bearer ${auth.accessToken}`;
+    }
+  }
+  return config;
+}, (error) => {
+  return Promise.reject(error);
 });
+
+export default apiClient;

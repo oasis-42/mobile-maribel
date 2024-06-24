@@ -4,6 +4,7 @@ import { View, Image, StyleSheet } from "react-native";
 import { Button, ActivityIndicator } from "react-native-paper";
 import { useContext } from "react";
 import AppContext from "../../../contexts/AppContext";
+import apiClient from '../../../../sdk/api';
 
 export default function PhotoConfirmation() {
     const [loading, setLoading] = React.useState(false);
@@ -21,21 +22,14 @@ export default function PhotoConfirmation() {
 
     async function processOcr() {
         setLoading(true)
-        const jsonBody = JSON.stringify({
-            "base64": base64Image
-        })
 
-        const response = await fetch(`${BASE_URL}/api/ocr/base64`, {
-            method: "POST",
-            headers: getBaseHeaders(),
-            body: jsonBody,
-            redirect: "follow"
-        });
+        const response = await apiClient.post('/api/ocr/base64', {
+            base64: base64Image
+        }) as any;
 
-        const jsonResponse = await response.json();
-        setText(jsonResponse.text);
+        setText(response.data.text);
         setLoading(false)
-        return jsonResponse;
+        return response.data;
     }
 
     async function handleOnPressContinuar() {

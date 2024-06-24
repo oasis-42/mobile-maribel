@@ -9,6 +9,7 @@ import * as DocumentPicker from 'expo-document-picker';
 import * as FileSystem from 'expo-file-system';
 import { useRouter } from "expo-router";
 import AppContext from '../contexts/AppContext';
+import apiClient from '../../sdk/api';
 
 interface FileInfo {
   uri: string;
@@ -28,26 +29,14 @@ const FilePicker: React.FC = () => {
   const cardWidth = width * 0.9272; // 92.72% da largura da tela
   const router = useRouter();
 
-  const getBaseHeaders = () => {
-    const headers = new Headers();
-    headers.append("Content-Type", "application/json");
-    return headers;
-  }
-
   const processOcr = async (base64Image: string) => {
     setLoading(true);
-    const jsonBody = JSON.stringify({ base64: base64Image });
 
     try {
-      const response = await fetch(`${BASE_URL}/api/v1/ocr/base64`, {
-        method: "POST",
-        headers: getBaseHeaders(),
-        body: jsonBody,
-        redirect: "follow"
-      });
-
-      const jsonResponse = await response.json();
-      setText(jsonResponse.text);
+      const response = await apiClient.post(`/api/ocr/base64`, {
+        base64: base64Image
+      }) as any;
+      setText(response.data.text);
       router.push({ pathname: "/screens/typeOfAssessment/textValidation" });
     } catch (error) {
       console.error('Error processing OCR:', error);

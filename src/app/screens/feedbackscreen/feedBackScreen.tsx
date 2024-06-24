@@ -5,12 +5,12 @@ import { useLocalSearchParams } from 'expo-router';
 const FeedBackCard = ({ competency }: { competency: any }) => (
     <View style={styles.card}>
         <View style={styles.header}>
-            <Text style={styles.title}>{competency.analyzedSkill}</Text>
+            <Text style={styles.title}>{competency.skillDescription}</Text>
             <Text style={styles.score}>Nota: {competency.grade}</Text>
         </View>
         <Text>{competency.feedback}</Text>
         <Text style={styles.sectionTitle}>Acertos:</Text>
-        {competency.successes.length > 0 ? (
+        {competency?.successes?.length > 0 ? (
             competency.successes.map((success: any, index: number) => (
                 <View key={index} style={styles.detail}>
                     <Text style={styles.excerpt}>{success.excerpt}</Text>
@@ -21,7 +21,7 @@ const FeedBackCard = ({ competency }: { competency: any }) => (
             <Text>Não há acertos.</Text>
         )}
         <Text style={styles.sectionTitle}>Erros:</Text>
-        {competency.errors.length > 0 ? (
+        {competency?.errors?.length > 0 ? (
             competency.errors.map((error: any, index: number) => (
                 <View key={index} style={styles.detail}>
                     <Text style={styles.excerpt}>{error.excerpt}</Text>
@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
         marginBottom: 10,
     },
     header: {
-        flexDirection: 'row',
+        flexDirection: 'column',
         justifyContent: 'space-between',
         alignItems: 'center',
         marginBottom: 10,

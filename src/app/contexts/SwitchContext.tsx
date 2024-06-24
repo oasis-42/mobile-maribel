@@ -13,13 +13,13 @@ export const SwitchProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     const loadSwitchStates = async () => {
-      try {
-        const response = await fetch('YOUR_API_ENDPOINT/getAllSwitchStates');
-        const data = await response.json();
-        setSwitchStates(data);
-      } catch (error) {
-        console.error('Failed to load switch states:', error);
-      }
+      // try {
+      //   const response = await fetch('YOUR_API_ENDPOINT/getAllSwitchStates');
+      //   const data = await response.json();
+      //   setSwitchStates(data);
+      // } catch (error) {
+      //   console.error('Failed to load switch states:', error);
+      // }
     };
 
     loadSwitchStates();
@@ -29,26 +29,26 @@ export const SwitchProvider = ({ children }: { children: ReactNode }) => {
     const previousState = switchStates[id];
     setSwitchStates(prevStates => ({ ...prevStates, [id]: value }));
 
-    try {
-      const response = await fetch('YOUR_API_ENDPOINT/updateSwitchState', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ id, switchValue: value }),
-      });
+  //   try {
+  //     const response = await fetch('YOUR_API_ENDPOINT/updateSwitchState', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify({ id, switchValue: value }),
+  //     });
 
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
+  //     if (!response.ok) {
+  //       throw new Error('Network response was not ok');
+  //     }
 
-      // Assuming the response contains the updated state or a confirmation
-      const data = await response.json();
-      setSwitchStates(prevStates => ({ ...prevStates, [id]: data.switchValue }));
-    } catch (error) {
-      console.error('Failed to update switch state:', error);
-      setSwitchStates(prevStates => ({ ...prevStates, [id]: previousState }));
-    }
+  //     // Assuming the response contains the updated state or a confirmation
+  //     const data = await response.json();
+  //     setSwitchStates(prevStates => ({ ...prevStates, [id]: data.switchValue }));
+  //   } catch (error) {
+  //     console.error('Failed to update switch state:', error);
+  //     setSwitchStates(prevStates => ({ ...prevStates, [id]: previousState }));
+  //   }
   };
 
   return (

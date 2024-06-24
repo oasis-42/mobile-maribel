@@ -5,26 +5,42 @@ import { PaperProvider, Text, TextInput,Button } from "react-native-paper";
 import { useRouter } from 'expo-router';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import helloUser from "../../assets/userAuth/helloUser.png";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function App() {
   const router = useRouter();
-  const [email, setEmail] = React.useState("");
+  const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
 
+  async function setAcessToken() {
+    try {
+      const res = await fetch("https://api.maribel.cloud/api/auth/jwt/create", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          username,
+          password
+        }),
+      });
+
+      const json = await res.json() as any;
+
+      console.log(json);
+
+      await AsyncStorage.setItem("auth", JSON.stringify({
+        accessToken: json['access'] as string,
+        refreshToken: json['refresh'] as string,
+        updatedAt: new Date()
+      }));
+    } catch(err) {
+      console.log(err);
+    }
+  }
 
   const handleLogin = () => {
-    
-    //FAZER COMUNICAÇÃO COM API PARA LOGIN E VALIDAÇÕES
-    
-    
-    
-    
-    
-    
-    // Adicionar lógica de autenticação aqui
-    console.log("Email:", email);
-    console.log("Senha:", password);
-    // Navegar para a próxima tela após login bem-sucedido
+    setAcessToken()
     router.push('/screens/home');
   };
 
@@ -50,16 +66,20 @@ export default function App() {
           extraScrollHeight={Platform.OS === "ios" ? 20 : 30}
         >
           <View style={styles.innerContainer}>
-            <Image source={helloUser} style={styles.image} />
+            { !username ? (
+              <Image source={helloUser} style={styles.image} />
+            ) : (
+              <></>
+            )
+            }
             <Text variant="headlineLarge" style={styles.headline}>Olá, estudante!</Text>
             <Text variant="titleMedium" style={styles.subtitle}>Como deseja acessar?</Text>
             
             <TextInput
-              label="Email"
-              value={email}
-              onChangeText={text => setEmail(text)}
+              label="Usuário"
+              value={username}
+              onChangeText={text => setUsername(text)}
               style={styles.input}
-              keyboardType="email-address"
               autoCapitalize="none"
             />
 
@@ -73,7 +93,10 @@ export default function App() {
 
           <DefaultButton 
             mode="contained" 
-            onPress={() => router.push('/screens/onboardings/onBoarding1')}
+            onPress={() => { 
+              setAcessToken();
+              router.push('/screens/onboardings/onBoarding1') 
+            }}
           >
             Entrar
           </DefaultButton>
@@ -86,13 +109,13 @@ export default function App() {
               Não tem uma conta? Registre-se
             </Button>
 
-            <Button 
+            {/* <Button 
               mode="text" 
               onPress={handleForgotPassword} 
               style={styles.link}
             >
               Esqueceu a senha?
-            </Button>
+            </Button> */}
           
           </View>
         </KeyboardAwareScrollView>

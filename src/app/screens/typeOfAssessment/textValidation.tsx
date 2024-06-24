@@ -3,6 +3,7 @@ import { View, TextInput, StyleSheet, Dimensions } from "react-native";
 import { Modal, Portal, Text, IconButton, Button, ActivityIndicator } from 'react-native-paper';
 import AppContext from "../../contexts/AppContext";
 import { useRouter, useLocalSearchParams } from "expo-router";
+import apiClient from "../../../sdk/api";
 
 const { width } = Dimensions.get("window");
 
@@ -33,27 +34,13 @@ export default function TextValidation() {
         console.log(confidenceOcr);
     }, [textOcr, confidenceOcr]);
 
-    const getBaseHeaders = () => {
-        const headers = new Headers();
-        headers.append("Content-Type", "application/json");
-        headers.append("Authorization", `Bearer ${AUTH_TOKEN}`);
-        return headers;
-    };
-
     async function handleFeedback() {
-        const raw = JSON.stringify({
+        const response = await apiClient.post('/api/feedbacks', {
             "text": text,
             "theme_id": 1
         });
 
-        const response = await fetch("https://api-maribel-production.up.railway.app/api/feedbacks", {
-            method: "POST",
-            headers: getBaseHeaders(),
-            body: raw,
-            redirect: "follow"
-        });
-
-        const jsonResponse = await response.json();
+        const jsonResponse = response.data;
         console.log("Feedback recebido:", jsonResponse);
         setFeedback(jsonResponse);
         return jsonResponse;

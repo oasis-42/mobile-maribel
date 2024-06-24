@@ -4,6 +4,8 @@ import { TextInput, Button, Text, PaperProvider } from "react-native-paper";
 import { useRouter } from 'expo-router';
 import helloUser from "../../../../assets/userAuth/helloUser.png";
 import DefaultButton from "../../components/DefaultButton";
+import apiClient from "../../../sdk/api";
+import axios from "axios";
 
 export default function RegistroScreen() {
     const router = useRouter();
@@ -48,33 +50,20 @@ export default function RegistroScreen() {
         return;
       }
 
-    const raw = JSON.stringify({
-        "email": email,
-        "username": username,
-        "password": password
-    });
-
-    try {
-        const response = await fetch("https://api.maribel.cloud/api/auth/users", {
-          method: "POST",
-          headers: getBaseHeaders(),
-          body: raw,
-          redirect: "follow"
-        });
+      try {
+        await axios.post('https://api.maribel.cloud/api/auth/users', {
+          "email": email,
+          "username": username,
+          "password": password
+        }) as any;
   
-        const jsonResponse = await response.json();
-        console.log("Registro:", jsonResponse);
-  
-        if (response.ok) {
-          Alert.alert("Sucesso", "Cadastro realizado com sucesso", [
-            { text: "OK", onPress: () => router.back() }
-          ]);
-        } else {
-          Alert.alert("Erro", jsonResponse?.detail || "Falha ao realizar cadastro");
-        }
+        Alert.alert("Sucesso", "Cadastro realizado com sucesso", [
+          { text: "OK", onPress: () => router.back() }
+        ]);
       } catch (error) {
         console.error("Erro:", error);
         Alert.alert("Erro", "Ocorreu um erro ao tentar realizar o cadastro");
+        Alert.alert("Erro", "Falha ao realizar cadastro");
       }
   };
 

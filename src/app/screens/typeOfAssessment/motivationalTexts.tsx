@@ -4,6 +4,7 @@ import { ScrollView, View, StyleSheet } from "react-native";
 import { useLocalSearchParams } from 'expo-router';
 import { useRouter } from 'expo-router';
 import DefaultButton from "../../components/DefaultButton";
+import apiClient from '../../../sdk/api';
 
 const API_URL = 'https://www.maribel.cloud/api/motivational-texts/theme';
 const AUTH_TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE5MTk2NjEyLCJpYXQiOjE3MTkxMTAyMTIsImp0aSI6ImYwYTAwZWQ3ODJlMzQ2ZTQ4MTkxMmNiMDhkZjAyNmUxIiwidXNlcl9pZCI6M30.AScWS68f8x3zpYtaOwAl6S032vYucMN5lGIQDdV6Qd4';
@@ -17,26 +18,14 @@ type MotivationalTextData = {
 
 async function fetchMotivationalTexts(theme_id: number) {
   try {
-    const response = await fetch(`${API_URL}/${theme_id}/`, {
-      headers: {
-        'Authorization': `Bearer ${AUTH_TOKEN}`,
-        'Content-Type': 'application/json'
-      }
-    });
+    const response = await apiClient.get(`/api/motivational-texts/theme/${theme_id}/`) as any;
 
-    const data = await response.json();
-    if (response.ok) {
-      return {
-        success: true,
-        data: data.results
-      };
-    } else {
-      console.error('Erro ao buscar dados:', data);
-      return {
-        success: false,
-        data: []
-      };
-    }
+    const data = response.data;
+
+    return {
+      success: true,
+      data: data.results
+    };
   } catch (error) {
     console.error('Erro ao buscar dados:', error);
     return {

@@ -23,7 +23,7 @@ export default function Schedule() {
           <DefaultCard
             title="AGENDA"
           >
-            <Text variant="bodyMedium">AGENDA</Text>
+            <Text variant="bodyMedium">Agenda vazia</Text>
           </DefaultCard>
           
           <DefaultButton 

@@ -4,37 +4,25 @@ import { ScrollView, View, StyleSheet } from "react-native";
 import DefaultButton from "../../components/DefaultButton";
 import ThemeSelectionCard from "../../components/ThemeSelectionCard";
 import { useRouter } from 'expo-router';
+import apiClient from '../../../sdk/api';
 
 const API_URL = 'https://www.maribel.cloud/api/themes';
 const AUTH_TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE5MTk2NjEyLCJpYXQiOjE3MTkxMTAyMTIsImp0aSI6ImYwYTAwZWQ3ODJlMzQ2ZTQ4MTkxMmNiMDhkZjAyNmUxIiwidXNlcl9pZCI6M30.AScWS68f8x3zpYtaOwAl6S032vYucMN5lGIQDdV6Qd4'; 
 
 type ThemeData = {
-  theme: number;
+  theme_id: number;
   title: string;
   year: number;
 };
 
 async function fetchData() {
   try {
-    const response = await fetch(API_URL, {
-      headers: {
-        'Authorization': `Bearer ${AUTH_TOKEN}`,
-        'Content-Type': 'application/json'
-      }
-    });
-    const data = await response.json();
-    if (response.ok) {
-      return {
-        success: true,
-        data: data.results
-      };
-    } else {
-      console.error('Erro ao buscar dados:', data);
-      return {
-        success: false,
-        data: []
-      };
-    }
+    const response = await apiClient.get('/api/themes') as any;
+    const data = response.data;
+    return {
+      success: true,
+      data: data.results
+    };
   } catch (error) {
     console.error('Erro ao buscar dados:', error);
     return {
@@ -81,12 +69,12 @@ export default function ThemeSelection() {
   const renderThemeCards = () => {
     return themes
       .sort((a, b) => b.year - a.year)
-      .map(({ theme, year, title }) => (
+      .map(({ theme_id, year, title }) => (
         <ThemeSelectionCard
-          key={theme}
+          key={theme_id}
           year={year.toString()} // Convertendo year para string
-          isSelected={selectedTheme === theme} 
-          onPress={() => handleCardPress(theme)}
+          isSelected={selectedTheme === theme_id} 
+          onPress={() => handleCardPress(theme_id)}
         >
           {title}
         </ThemeSelectionCard>
