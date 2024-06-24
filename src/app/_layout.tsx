@@ -110,6 +110,14 @@ export default function RootLayout() {
             name="screens/typeOfAssessment/textValidation"
             options={{ title: "Criando avaliação", headerTitleAlign: "center" }}
           />
+          <Stack.Screen
+            name="screens/login/forgotPassword"
+            options={{ title: "Esqueci minha senha", headerTitleAlign: "center" }}
+          />
+          <Stack.Screen
+            name="screens/login/registerAccount"
+            options={{ title: "Crie sua conta", headerTitleAlign: "center" }}
+          />
         </Stack>
         
       </PaperProvider>
