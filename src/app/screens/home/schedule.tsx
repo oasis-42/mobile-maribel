@@ -21,9 +21,14 @@ export default function Schedule() {
             <Text variant="bodyMedium">Você é dedicado</Text>
           </DefaultCard>
           <DefaultCard
-            title="AGENDA"
+            title="Agenda"
           >
             <Text variant="bodyMedium">Agenda vazia</Text>
+          </DefaultCard>
+          <DefaultCard
+            title="Histórico"
+          >
+            <Text variant="bodyMedium">Histórico vazio</Text>
           </DefaultCard>
           
           <DefaultButton 
