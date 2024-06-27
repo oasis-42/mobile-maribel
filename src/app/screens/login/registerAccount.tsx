@@ -67,6 +67,14 @@ export default function RegistroScreen() {
       }
   };
 
+  const inputTheme = {
+    colors: {
+      primary: '#044884',  
+      underlineColor: 'transparent',  
+      background: '#ffffff'  
+    }
+  };
+
   return (
     <PaperProvider>
       <KeyboardAvoidingView
@@ -79,6 +87,7 @@ export default function RegistroScreen() {
             <Text variant="headlineLarge" style={styles.headline}>Cadastre-se</Text>
             
             <TextInput
+              mode="outlined"
               label="Email"
               value={formData.email}
               onChangeText={(text) => setFormData({ ...formData, email: text })}
@@ -86,26 +95,31 @@ export default function RegistroScreen() {
               keyboardType="email-address"
               autoCapitalize="none"
               error={!!errors.email}
+              theme={inputTheme}
             />
             {errors.email ? <Text style={styles.errorText}>{errors.email}</Text> : null}
 
             <TextInput
+              mode="outlined"
               label="Username"
               value={formData.username}
               onChangeText={(text) => setFormData({ ...formData, username: text })}
               style={styles.input}
               autoCapitalize="none"
               error={!!errors.username}
+              theme={inputTheme}
             />
             {errors.username ? <Text style={styles.errorText}>{errors.username}</Text> : null}
 
             <TextInput
+              mode="outlined"
               label="Senha"
               value={formData.password}
               onChangeText={(text) => setFormData({ ...formData, password: text })}
               style={styles.input}
               secureTextEntry={!passwordVisible}
               error={!!errors.password}
+              theme={inputTheme}
               right={
                 <TextInput.Icon 
                   icon={passwordVisible ? "eye-off" : "eye"} 
@@ -116,12 +130,14 @@ export default function RegistroScreen() {
             {errors.password ? <Text style={styles.errorText}>{errors.password}</Text> : null}
 
             <TextInput
+              mode="outlined"
               label="Confirmação de Senha"
               value={formData.confirmPassword}
               onChangeText={(text) => setFormData({ ...formData, confirmPassword: text })}
               style={styles.input}
               secureTextEntry={!confirmPasswordVisible}
               error={!!errors.confirmPassword}
+              theme={inputTheme}
               right={
                 <TextInput.Icon 
                   icon={confirmPasswordVisible ? "eye-off" : "eye"} 

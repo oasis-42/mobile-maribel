@@ -149,6 +149,7 @@ const styles = StyleSheet.create({
   },
   cardText: {
     color: "#2E3E4B",
+    textAlign: "justify"
   
   },
   loadingIndicator: {

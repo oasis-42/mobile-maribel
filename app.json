@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "mobile-maribel",
+    "name": "Maribel",
     "slug": "mobile-maribel",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -12,7 +12,9 @@
       "backgroundColor": "#ffffff"
     },
     "scheme": "mobile-maribel-scheme",
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true
     },
@@ -20,7 +22,12 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.RECORD_AUDIO"
+      ],
+      "package": "com.eloimatos.mobilemaribel"
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -33,6 +40,14 @@
         }
       ],
       "expo-router"
-    ]
+    ],
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "4b344326-7099-4d80-9aad-1b02fc9481a1"
+      }
+    }
   }
 }
