@@ -16,7 +16,7 @@ export default function Schedule() {
         <View style={{ alignItems: "center", justifyContent: "flex-start", width: "100%"}}>
           
           <DefaultCard
-            title="João SIlva"
+            title="Bem vindo!"
           >
             <Text variant="bodyMedium">Você é dedicado</Text>
           </DefaultCard>
