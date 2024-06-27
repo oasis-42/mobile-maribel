@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import AppContext from '../../contexts/AppContext';
 import { PaperProvider, Text, ActivityIndicator } from "react-native-paper";
 import { ScrollView, View, StyleSheet } from "react-native";
 import DefaultButton from "../../components/DefaultButton";
 import ThemeSelectionCard from "../../components/ThemeSelectionCard";
 import { useRouter } from 'expo-router';
 import apiClient from '../../../sdk/api';
-
-const API_URL = 'https://www.maribel.cloud/api/themes';
-const AUTH_TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE5MTk2NjEyLCJpYXQiOjE3MTkxMTAyMTIsImp0aSI6ImYwYTAwZWQ3ODJlMzQ2ZTQ4MTkxMmNiMDhkZjAyNmUxIiwidXNlcl9pZCI6M30.AScWS68f8x3zpYtaOwAl6S032vYucMN5lGIQDdV6Qd4'; 
 
 type ThemeData = {
   theme_id: number;
@@ -38,6 +36,8 @@ export default function ThemeSelection() {
   const [themes, setThemes] = useState<ThemeData[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
+  const { setThemeId } = useContext<any>(AppContext);
+
   useEffect(() => {
     const loadRealData = async () => {
       setIsLoading(true);
@@ -57,6 +57,8 @@ export default function ThemeSelection() {
 
   const handleContinuePress = async () => {
     if (selectedTheme !== null) {
+      setThemeId(selectedTheme);
+
       router.push({
         pathname: '/screens/typeOfAssessment/motivationalTexts',
         params: { theme_id: selectedTheme },

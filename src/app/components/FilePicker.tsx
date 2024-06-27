@@ -24,7 +24,7 @@ const BASE_URL = "https://api-maribel-production.up.railway.app";
 const FilePicker: React.FC = () => {
   const [fileInfo, setFileInfo] = useState<FileInfo | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
-  const { setText } = useContext(AppContext);
+  const { setText } = useContext<any>(AppContext);
   const { width } = useWindowDimensions();
   const cardWidth = width * 0.9272; // 92.72% da largura da tela
   const router = useRouter();

@@ -11,8 +11,6 @@ const apiClient = axios.create({
 apiClient.interceptors.request.use(async (config) => {
   const authData = await AsyncStorage.getItem('auth');
 
-  console.log("AUTH_DATA", authData);
-
   if (authData) {
     const auth = JSON.parse(authData);
     const updatedAt = new Date(auth.updatedAt);

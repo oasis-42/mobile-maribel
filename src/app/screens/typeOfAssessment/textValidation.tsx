@@ -11,12 +11,11 @@ export default function TextValidation() {
     const [visible, setVisible] = useState(false);
     const [modalText, setModalText] = useState("");
     const [loading, setLoading] = useState(false);
-    const { setFeedback } = useContext<any>(AppContext);
+    const { setFeedback, themeId } = useContext<any>(AppContext);
     const [text, setText] = useState<any>('');
     const [confidence, setConfidence] = useState<any>(0);
     const { textOcr, confidenceOcr } = useLocalSearchParams();
     const router = useRouter();
-    const AUTH_TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE5MTk2NjEyLCJpYXQiOjE3MTkxMTAyMTIsImp0aSI6ImYwYTAwZWQ3ODJlMzQ2ZTQ4MTkxMmNiMDhkZjAyNmUxIiwidXNlcl9pZCI6M30.AScWS68f8x3zpYtaOwAl6S032vYucMN5lGIQDdV6Qd4';
 
     const showModal = () => {
         setVisible(true);
@@ -37,7 +36,7 @@ export default function TextValidation() {
     async function handleFeedback() {
         const response = await apiClient.post('/api/feedbacks', {
             "text": text,
-            "theme_id": 1
+            "theme_id": Number(themeId)
         });
 
         const jsonResponse = response.data;

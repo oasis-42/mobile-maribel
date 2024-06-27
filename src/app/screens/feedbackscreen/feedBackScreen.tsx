@@ -39,14 +39,10 @@ const FeedBackCard = ({ competency }: { competency: any }) => (
 const FeedBackScreen: React.FC = () => {
     const { feedbackData } = useLocalSearchParams();
     
-    // Verifica se feedbackData é um array, caso seja, pega o primeiro elemento
     const feedbackString = Array.isArray(feedbackData) ? feedbackData[0] : feedbackData;
     
-    // Converte feedbackString para JSON, caso não seja undefined
     const feedback = feedbackString ? JSON.parse(feedbackString) : [];
     
-    console.log("Dados de feedback:", feedback); // Adiciona um log para verificar os dados de feedback
-
     return (
         <ScrollView style={styles.container}>
             {feedback.essayAnalysis && feedback.essayAnalysis.length > 0 ? (

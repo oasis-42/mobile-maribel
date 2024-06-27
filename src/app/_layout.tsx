@@ -7,6 +7,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 export default function RootLayout() {
   const [base64Image, setBase64Image] = useState();
   const [text, setText] = useState();
+  const [themeId, setThemeId] = useState();
   const [feedback, setFeedback] = useState();
   const router = useRouter();
 
@@ -17,7 +18,9 @@ export default function RootLayout() {
       text, 
       setText,
       feedback, 
-      setFeedback
+      setFeedback,
+      themeId,
+      setThemeId
     }}>
       
       <PaperProvider>

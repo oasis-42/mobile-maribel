@@ -51,7 +51,7 @@ export default function RegistroScreen() {
       }
 
       try {
-        await axios.post('https://api.maribel.cloud/api/auth/users', {
+        await axios.post('https://api.maribel.cloud/api/auth/users/', {
           "email": email,
           "username": username,
           "password": password
