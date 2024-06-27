@@ -1,103 +1,99 @@
-import React, { useEffect, useState } from "react";
-import { PaperProvider } from "react-native-paper";
-import { View, Pressable, Text, ScrollView } from "react-native";
-import { Link } from "expo-router";
-import FeedBackCard from "./feedBackCard";
-import {
-  black,
-  blue300,
-} from "react-native-paper/lib/typescript/styles/themes/v2/colors";
+import * as React from 'react';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { useLocalSearchParams } from 'expo-router';
+
+const FeedBackCard = ({ competency }: { competency: any }) => (
+    <View style={styles.card}>
+        <View style={styles.header}>
+            <Text style={styles.title}>{competency.skillDescription}</Text>
+            <Text style={styles.score}>Nota: {competency.grade}</Text>
+        </View>
+        <Text>{competency.feedback}</Text>
+        <Text style={styles.sectionTitle}>Acertos:</Text>
+        {competency?.successes?.length > 0 ? (
+            competency.successes.map((success: any, index: number) => (
+                <View key={index} style={styles.detail}>
+                    <Text style={styles.excerpt}>{success.excerpt}</Text>
+                    <Text>{success.reason}</Text>
+                </View>
+            ))
+        ) : (
+            <Text>Não há acertos.</Text>
+        )}
+        <Text style={styles.sectionTitle}>Erros:</Text>
+        {competency?.errors?.length > 0 ? (
+            competency.errors.map((error: any, index: number) => (
+                <View key={index} style={styles.detail}>
+                    <Text style={styles.excerpt}>{error.excerpt}</Text>
+                    <Text>{error.reason}</Text>
+                    <Text style={styles.sectionTitle}>Como corrigir:</Text>
+                    <Text>{error.howToCorrect}</Text>
+                </View>
+            ))
+        ) : (
+            <Text>Não há erros.</Text>
+        )}
+    </View>
+);
 
 const FeedBackScreen: React.FC = () => {
-  const [feedbackData, setFeedbackData] = useState<any[]>([]);
-
-  useEffect(() => {
-    fetch("https://6643b00e6c6a656587080a48.mockapi.io/api/v1/feedback")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        setFeedbackData(data);
-      })
-      .catch((error) => {
-        console.error("There was a problem with your fetch operation:", error);
-      });
-  }, []);
-
-  return (
-    <PaperProvider>
-      <ScrollView>
-      <View
-        style={{
-          gap: 8,
-          paddingVertical: 15,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-        }}
-      >
-        {feedbackData.map((item) => (
-          <View
-            style={{
-              borderColor: "black",
-              borderWidth: 0.4,
-              borderRadius: 12,
-              backgroundColor: "white",
-              display: "flex",
-              flexDirection: "column",
-              width: 382,
-              height: 320,
-            }}
-            key={item.key}>
-            <View
-              style={{
-                display: "flex",
-              }
-            }>
-              <View
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  width: 382,
-                }}
-              >
-                <View
-                  style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    justifyContent: "space-between",
-                    padding: 8,
-                  }}>
-                <View>
-                  
-                <View
-                  style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    justifyContent: "space-between",
-                    padding: 4,
-                  }}>
-                <Text>Competência {item.competencia}   </Text>
-                <Text>{item.points} Pontos  </Text>
-                </View>
-                <Text>{item.description}</Text>
-                <Text style={{marginTop: 16, fontSize: 16}}>Parecer</Text>
-                <Text style={{
-                  height: 320
-                }}>{item.parecer}</Text>
-                </View>
-                </View>
-              </View>
-            </View>
-          </View>
-        ))}
-      </View>
-      </ScrollView>
-    </PaperProvider>
-  );
+    const { feedbackData } = useLocalSearchParams();
+    
+    const feedbackString = Array.isArray(feedbackData) ? feedbackData[0] : feedbackData;
+    
+    const feedback = feedbackString ? JSON.parse(feedbackString) : [];
+    
+    return (
+        <ScrollView style={styles.container}>
+            {feedback.essayAnalysis && feedback.essayAnalysis.length > 0 ? (
+                feedback.essayAnalysis.map((item: any, index: number) => (
+                    <FeedBackCard key={index} competency={item} />
+                ))
+            ) : (
+                <Text>Não há feedback disponível.</Text>
+            )}
+        </ScrollView>
+    );
 };
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        padding: 15,
+        backgroundColor: '#f5f5f5',
+    },
+    card: {
+        borderColor: "#D7D7D7",
+        borderWidth: 1,
+        borderRadius: 5,
+        backgroundColor: "white",
+        padding: 10,
+        marginBottom: 10,
+    },
+    header: {
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginBottom: 10,
+    },
+    title: {
+        fontSize: 16,
+        fontWeight: 'bold',
+    },
+    score: {
+        fontSize: 16,
+    },
+    sectionTitle: {
+        fontSize: 14,
+        fontWeight: 'bold',
+        marginTop: 10,
+    },
+    detail: {
+        marginTop: 5,
+    },
+    excerpt: {
+        fontStyle: 'italic',
+    },
+});
 
 export default FeedBackScreen;

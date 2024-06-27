@@ -1,64 +1,61 @@
-import { Link } from "expo-router";
-import { Pressable, ScrollView, Text, View } from "react-native";
-import { Card, PaperProvider } from "react-native-paper";
+import { PaperProvider, Text } from "react-native-paper";
+import { ScrollView, View, useWindowDimensions } from "react-native";
+import DefaultButton from "../../components/DefaultButton";
+import DefaultCard from "../../components/DefaultCard";
+import { useRouter } from 'expo-router';
 
 export default function OnBoarding2() {
+  const router = useRouter();
+ 
+ 
+
   return (
     <PaperProvider>
-      <ScrollView style={{ flexDirection: "column" }}>
-        <View style={{ marginTop: 12, gap: 14, padding: 10 }}>
-          <Text style={{ fontWeight: "700", fontSize: 25 }}>
+      <ScrollView contentContainerStyle={{ alignItems: "center", justifyContent: "flex-start", flex: 1, backgroundColor: "#fff" }}>
+        <View style={{ alignItems: "flex-start", justifyContent: "flex-start", width: "100%", padding: 16 }}>
+          
+          <Text variant="headlineSmall" style={{ color: "#2E3E4B", marginBottom: 4, fontWeight: "700" }}>
             Personalize sua evolução
           </Text>
-          <Text style={{ fontWeight: "600" }}>
+          <Text
+            variant="titleSmall"
+            style={{
+              fontSize: 16,
+              fontWeight: "600",
+              color: "#2E3E4B",
+              textAlign: "left",
+              lineHeight: 24,
+              marginBottom: 16,
+            }}
+          >
             Entenda quais formas de avaliação melhor se encaixam em seus estudos
           </Text>
-          <Card style={{ borderColor: "#D7D7D7" }}>
-            <Card.Title
-              title="Avaliação guiada"
-              titleStyle={{ fontWeight: "700", fontSize: 20 }}
-            />
-            <Card.Content>
-              <Text style={{ fontWeight: "400", fontSize: 12 }}>
-                Faça a sua avaliação com maior assertividade ao seguir nossos
-                temas e instruções predefinidos.
-              </Text>
-            </Card.Content>
-          </Card>
-          <Card style={{ borderColor: "#D7D7D7" }}>
-            <Card.Title
-              title="Avaliação adaptativa"
-              titleStyle={{ fontWeight: "700", fontSize: 20 }}
-            />
-            <Card.Content>
-              <Text style={{ fontWeight: "400", fontSize: 12 }}>
-                Faça a sua avaliação com novas percepções ao deixar a
-                inteligência artificial sem instruções.
-              </Text>
-            </Card.Content>
-          </Card>
-          <Link href={"./onBoarding3"} asChild>
-            <Pressable
-              style={{
-                backgroundColor: "#044884",
-                width: "auto",
-                height: 56,
-                flex: 1,
-                justifyContent: "center",
-                padding: 8,
-              }}
-            >
-              <Text
-                style={{
-                  color: "#FFFFFF",
-                  fontWeight: "600",
-                  textAlign: "center",
-                }}
-              >
-                Continuar
-              </Text>
-            </Pressable>
-          </Link>
+          
+        </View>
+        <View style={{ alignItems: "center", justifyContent: "flex-start", width: "100%"}}>
+          
+          <DefaultCard
+            style= {{ height: 136 }}
+            title="Avaliação guiada"
+          >
+            <Text variant="bodyMedium">Faça a sua avaliação com maior assertividade ao seguir nossos temas e instruções predefinidos</Text>
+          </DefaultCard>
+          <DefaultCard
+            style= {{ height: 136 }}
+            title="Avaliação adaptativa"
+          >
+            <Text variant="bodyMedium">Faça a sua avaliação com novas percepções ao deixar a inteligência artificial sem instruções</Text>
+          </DefaultCard>
+          
+          <DefaultButton 
+          
+            mode="contained" 
+            onPress={() => router.push('/screens/onboardings/onBoarding3')}
+            style={{ marginTop: 32}}
+          >
+            Continuar
+          </DefaultButton>
+          
         </View>
       </ScrollView>
     </PaperProvider>
